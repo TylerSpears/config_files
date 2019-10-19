@@ -1,0 +1,25 @@
+#
+# Testing repository - main, contrib and non-free branches
+deb http://http.us.debian.org/debian testing main non-free contrib
+deb-src http://http.us.debian.org/debian testing main non-free contrib
+
+# Testing security updates repository
+deb http://security.debian.org testing-security main contrib non-free
+deb-src  http://security.debian.org testing-security main contrib non-free
+
+deb [allow-insecure=yes] http://www.deb-multimedia.org testing main non-free
+
+
+# unstable archives
+# WARNING: only put these in sources.list if you have /etc/apt/preferences
+# properly set up; i.e., unstable releases should have lower priority than
+# all other releases
+# Otherwise, could install unstable version, which can be insecure
+# -TS 8/13/18
+deb http://debian.csail.mit.edu/debian/ unstable main non-free contrib
+deb-src http://debian.csail.mit.edu/debian/ unstable main non-free contrib
+
+deb [arch=amd64] https://download.docker.com/linux/debian buster stable
+# deb-src [arch=amd64] https://download.docker.com/linux/debian buster stable
+
+
