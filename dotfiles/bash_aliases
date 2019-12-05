@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# aliases for bash terminal
+
+# alias ls command
+# superseded by 'exa' below
+# alias ls="ls --all -l --human-readable --group-directories-first --color"
+# alias printenv for environment variables
+alias printenv="printenv | sed '/.:./ { s/:/\n\t/g; }'"
+# alias pandoc to point to version installed for entire system
+# otherwise, anaconda version will come first in $PATH
+alias pandoc="/usr/bin/pandoc"
+
+# python/notebook aliases
+# create command for referencing the system's "default" jupyter installation
+alias jupyd="/opt/anaconda3/bin/conda run -n jupyter_server jupyter"
+
+# improved diff command
+alias diff="diff-so-fancy"
+
+# improved cat
+alias cat="bat"
+
+# improved 'ls'
+alias l="exa -lahF"
+
+# improved 'find'
+alias fd="fdfind"
+alias find="fd"
+
+# change "z" command to "j"
+export _Z_CMD="j"
+
+# dotdrop
+alias dotdrop='/home/tyler/dotfiles/dotdrop.sh --cfg=/home/tyler/dotfiles/config.yaml'
+

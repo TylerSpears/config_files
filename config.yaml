@@ -1,0 +1,45 @@
+config:
+  backup: true
+  create: true
+  dotpath: dotfiles
+  link_dotfile_default: link
+dotfiles:
+  f_vimrc:
+    src: vimrc
+    dst: ~/.vimrc
+  f_bash_aliases:
+    src: bash_aliases
+    dst: ~/.bash_aliases
+  f_pylintrc:
+    src: pylintrc
+    dst: ~/.pylintrc
+  f_condarc:
+    src: condarc
+    dst: ~/.condarc
+  f_cookiecutterrc:
+    src: cookiecutterrc
+    dst: ~/.cookiecutterrc
+  f_gitconfig:
+    src: gitconfig
+    dst: ~/.gitconfig
+  d_git:
+    src: git
+    dst: ~/.git
+  f_solarized.vim:
+    src: vim/colors/solarized.vim
+    dst: ~/.vim/colors/solarized.vim
+  f_bashrc:
+    src: bashrc
+    dst: ~/.bashrc
+profiles:
+  kronos:
+    dotfiles:
+    - f_vimrc
+    - f_bash_aliases
+    - f_pylintrc
+    - f_condarc
+    - f_cookiecutterrc
+    - f_gitconfig
+    - d_git
+    - f_solarized.vim
+    - f_bashrc
