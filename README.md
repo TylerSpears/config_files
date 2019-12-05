@@ -9,5 +9,5 @@ These configurations were largely taken from or based on the work of others,
 and I will do my best to give credit where credit is due. So, special thanks
 to:
 
-* Bashdot
+* dotdrop
 
