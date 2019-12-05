@@ -1,0 +1,4 @@
+// this file only exists to pull in patterns from
+// `./.stignore_synced`
+#include .stignore_synced
+

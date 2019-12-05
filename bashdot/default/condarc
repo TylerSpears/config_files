@@ -1,0 +1,31 @@
+# pre-constructed `.condarc` configuration file, to be placed in
+# home directory
+# Taken from: 
+# https://gist.github.com/ocefpaf/863fc5df6ed8444378fbb1211ad8feb1
+
+# See 
+# https://www.anaconda.com/understanding-and-improving-condas-performance/
+# for more info.
+# help debug channel issues
+show_channel_urls: true
+
+# pip will always be installed with python 
+add_pip_as_python_dependency: true
+
+# strict priority and conda-forge at the bottom will ensure
+# that all of your packages will be from defaults unless they only exist 
+# on conda-forge
+channel_priority: strict
+channels:
+  - defaults
+  - conda-forge
+
+# when using "conda create" for envs these packages will always 
+# be installed
+create_default_packages:
+  - ipython
+  - pip
+  - anaconda-project
+
+safety_checks: disabled
+

@@ -1,0 +1,32 @@
+
+
+mv anaconda3/ /opt/
+ln -h
+ln --help
+ln -d /opt/anaconda3/
+ls
+ln  /opt/anaconda3/
+ln  /opt/anaconda3
+ln -s /opt/anaconda3
+conda config -set channel_priority strict
+conda config --set channel_priority strict
+...
+mkdir -p anaconda3/etc/conda/activate.d
+mkdir -p anaconda3/etc/conda/deactivate.d
+cd anaconda3/etc/conda/activate.d/
+...
+touch remove_base_ps1.sh
+vim remove_base_ps1.sh 
+...
+conda-env create -n jupyter_server
+conda-env -h
+conda env create -n jupyter_server
+conda env -h
+conda-env list
+conda env create -n jupyter_server python=3.7
+conda update conda
+conda upgrade --all
+conda config --append channels conda-forge
+...
+conda create -n jupyter_server python=3.7 jupyter
+conda activate jupyter_server

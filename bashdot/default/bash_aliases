@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# aliases for bash terminal
+
+# alias ls command
+alias ls="ls --all -l --human-readable --group-directories-first --color"
+# alias printenv for environment variables
+alias printenv="printenv | sed '/.:./ { s/:/\n\t/g; }'"
+# alias pandoc to point to version installed for entire system
+# otherwise, anaconda version will come first in $PATH
+alias pandoc="/usr/bin/pandoc"
+
+# python/notebook aliases
+# create command for referencing the system's "default" jupyter installation
+alias jupyd="/opt/anaconda3/bin/conda run -n jupyter_server jupyter"
+
+# Set aliases for ProjectMan (<https://github.com/saurabhdaware/projectman>)
+# to call when opening a project.
+# see <https://github.com/saurabhdaware/projectman#settings-ref> for details
+if [ -f ~/.pm_aliases ]; then
+    . ~/.pm_aliases
+fi
+

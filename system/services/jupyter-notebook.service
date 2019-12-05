@@ -1,0 +1,13 @@
+
+[Unit]
+Description=Jupyter Notebook Server
+
+[Service]
+Type=simple
+ExecStart=/opt/anaconda3/bin/conda run -n jupyter_server jupyter notebook /home/tyler --no-browser
+WorkingDirectory=/home/tyler
+User=tyler
+
+[Install]
+WantedBy=multi-user.target
+

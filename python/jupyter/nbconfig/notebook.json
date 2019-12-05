@@ -1,0 +1,40 @@
+{
+  "load_extensions": {
+    "code_prettify/code_prettify": true,
+    "collapsible_headings/main": true,
+    "scroll_down/main": true,
+    "codefolding/main": true,
+    "execute_time/ExecuteTime": true,
+    "table_beautifier/main": true,
+    "toggle_all_line_numbers/main": true,
+    "scratchpad/main": true,
+    "latex_envs/latex_envs": true,
+    "comment-uncomment/main": true,
+    "zenmode/main": true,
+    "autosavetime/main": true
+  },
+  "Notebook": {
+    "Toolbar": false
+  },
+  "zenmode_set_zenmode_on_load": false,
+  "keys": {
+    "command": {
+      "bind": {
+        "ctrl-k,z": "zenmode:toggle-zenmode"
+      }
+    }
+  },
+  "autosavetime_starting_interval": "30",
+  "autosavetime_set_starting_interval": true,
+  "scrollDownIsEnabled": false,
+  "zenmode_backgrounds": [
+    "https://github.com/ipython-contrib/jupyter_contrib_nbextensions/raw/master/src/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back1.jpg",
+    "https://github.com/ipython-contrib/jupyter_contrib_nbextensions/raw/master/src/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back11.jpg",
+    "https://github.com/ipython-contrib/jupyter_contrib_nbextensions/raw/master/src/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back12.jpg",
+    "https://github.com/ipython-contrib/jupyter_contrib_nbextensions/raw/master/src/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back2.jpg",
+    "https://github.com/ipython-contrib/jupyter_contrib_nbextensions/raw/master/src/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back21.jpg",
+    "https://github.com/ipython-contrib/jupyter_contrib_nbextensions/raw/master/src/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back22.jpg",
+    "https://github.com/ipython-contrib/jupyter_contrib_nbextensions/raw/master/src/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back3.jpg"
+  ],
+  "zenmode_use_builtin_backgrounds": false
+}
