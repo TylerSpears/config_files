@@ -23,9 +23,11 @@ git:
 * <https://www.davidlaing.com/2012/09/19/customise-your-gitattributes-to-become-a-git-ninja/>
 * <https://github.com/github/gitignore>
 * <https://gist.github.com/octocat/9257657>
+* <https://dev.to/michi/handy-git-aliases-5ag3>
+* <https://stackoverflow.com/a/18782415>
 
 vim:
 * <https://github.com/nickjj/dotfiles/blob/master/.vimrc>
 * <https://github.com/plasticboy/vim-markdown#syntax-extensions>
-
+* <http://ethanschoonover.com/solarized>
 

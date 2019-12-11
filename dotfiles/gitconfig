@@ -28,3 +28,11 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[alias]
+    # Taken from: <https://dev.to/michi/handy-git-aliases-5ag3>
+    amend = commit --amend --no-edit
+    nah = !git reset --hard && git clean -df
+    alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+    # Uses a shell command to retrieve the current branch. Taken from
+    # <https://stackoverflow.com/a/18782415>
+    update = "!git pull --rebase origin \"$(git rev-parse --abbrev-ref HEAD)\""

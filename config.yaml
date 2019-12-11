@@ -2,7 +2,7 @@ actions:
   pre:
     debian-setup: mkdir ~/bin && sudo apt update && xargs --arg-file="setup/apt_pkglist" sudo apt -y install
     nbdime-install: pip install --upgrade --quiet nbdime
-    dsf-install: wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o ~/bin/diff-so-fancy && chmod +x ~/bin/diff-so-fancy
+    dsf-install: wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy --output-document $HOME/bin/diff-so-fancy && chmod +x $HOME/bin/diff-so-fancy
   post:
     nbdime-vcs-setup: nbdime config-git --enable --global
     vim-plug-setup: vim +PlugInstall +qall
