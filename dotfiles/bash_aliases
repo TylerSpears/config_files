@@ -1,36 +1,49 @@
 #!/bin/sh
-
-# aliases for bash terminal
+# {{@@ header() @@}}
 
 # alias ls command
-# superseded by 'exa' below
-# alias ls="ls --all -l --human-readable --group-directories-first --color"
+alias ls="ls --all -l --human-readable --group-directories-first --color"
 # alias printenv for environment variables
 alias printenv="printenv | sed '/.:./ { s/:/\n\t/g; }'"
+
+{%@@ if exists_in_path('pandoc') @@%}
 # alias pandoc to point to version installed for entire system
 # otherwise, anaconda version will come first in $PATH
 alias pandoc="/usr/bin/pandoc"
+{%@@ endif @@%}
 
+{%@@ if env['CONDA_EXE'] is defined @@%}
 # python/notebook aliases
 # create command for referencing the system's "default" jupyter installation
-alias jupyd="/opt/anaconda3/bin/conda run -n jupyter_server jupyter"
+alias jupyd="$CONDA_EXE run -n jupyter_server jupyter"
+{%@@ endif @@%}
 
+{%@@ if exists_in_path('diff-so-fancy') @@%}
 # improved diff command
 alias diff="diff-so-fancy"
+{%@@ endif @@%}
 
+{%@@ if exists_in_path('bat') @@%}
 # improved cat
 alias cat="bat"
+{%@@ endif @@%}
 
+{%@@ if exists_in_path('exa') @@%}
 # improved 'ls'
 alias l="exa -lahF"
+{%@@ endif @@%}
 
 # improved 'find'
+{%@@ if exists_in_path('fdfind') @@%}
 alias fd="fdfind"
 alias find="fd"
+{%@@ else @@%}
+alias fd="find"
+{%@@ endif @@%}
 
 # change "z" command to "j"
 export _Z_CMD="j"
 
 # dotdrop
-alias dotdrop='/home/tyler/dotfiles/dotdrop.sh --cfg=/home/tyler/dotfiles/config.yaml'
+alias dotdrop="{{@@ env['HOME'] @@}}/dotfiles/dotdrop.sh --profile={{@@ env['DOTDROP_PROFILE'] @@}} --cfg={{@@ env['HOME'] @@}}/dotfiles/config.yaml"
 

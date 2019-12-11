@@ -1,3 +1,11 @@
+actions:
+  pre:
+    debian-setup: mkdir ~/bin && sudo apt update && xargs --arg-file="setup/apt_pkglist" sudo apt -y install
+    nbdime-install: pip install --upgrade --quiet nbdime
+    dsf-install: wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o ~/bin/diff-so-fancy && chmod +x ~/bin/diff-so-fancy
+  post:
+    nbdime-vcs-setup: nbdime config-git --enable --global
+    vim-plug-setup: vim +PlugInstall +qall
 config:
   backup: true
   create: true
@@ -7,6 +15,8 @@ dotfiles:
   f_vimrc:
     src: vimrc
     dst: ~/.vimrc
+    actions:
+      - vim-plug-setup
   f_bash_aliases:
     src: bash_aliases
     dst: ~/.bash_aliases
@@ -22,6 +32,10 @@ dotfiles:
   f_gitconfig:
     src: gitconfig
     dst: ~/.gitconfig
+    actions:
+      - nbdime-install
+      - nbdime-vcs-setup
+      - dsf-install
   d_git:
     src: git
     dst: ~/.git
@@ -32,7 +46,9 @@ dotfiles:
     src: bashrc
     dst: ~/.bashrc
 profiles:
-  kronos:
+  debian:
+    actions:
+    - debian-setup
     dotfiles:
     - f_vimrc
     - f_bash_aliases
@@ -43,3 +59,7 @@ profiles:
     - d_git
     - f_solarized.vim
     - f_bashrc
+  debian_cuda:
+    include:
+    - debian
+

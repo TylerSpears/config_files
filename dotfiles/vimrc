@@ -104,11 +104,13 @@ set foldlevel=99
 nnoremap <space> za
 
 " set PEP8 compliant properties for .py files
+" and some Black format
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-    \ set textwidth=79 |
+"    \ set textwidth=79 |
+    \ set textwidth=90 |
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix
@@ -127,9 +129,9 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 " Ctrl+n shortcut to open NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
-" highlight column index 80 to encourage better coding practice
-" according to PEP 8 standard
-set cc=79
+" highlight column index 90 to encourage better coding practice
+" according to ~~PEP 8~~ Black standard
+set cc=90
 
 " plasticboy/vim-markdown
 " Enable extensions for `vim-markdown`, see 

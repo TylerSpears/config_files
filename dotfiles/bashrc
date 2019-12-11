@@ -1,3 +1,6 @@
+#!/bin/sh
+# {{@@ header() @@}}
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -83,9 +86,6 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -112,6 +112,10 @@ export NVM_DIR="$HOME/.nvm"
 
 #-------------------------- lines added by hand - TAS 3/21/19
 export TERM=xterm-256color
+
+# Add $HOME/bin to the PATH to allow user-installable binaries.
+# Taken from https://unix.stackexchange.com/a/36874
+export PATH="$HOME/bin:$PATH"
 
 # set custom PS1
 
@@ -142,6 +146,8 @@ unset __conda_setup
 #eval "$(register-python-argcomplete conda)"
 # == End Anaconda Setup ==
 
+{%@@ if exists_in_path('z.sh') @@%}
 # activate "z"
 . z.sh
+{%@@ endif @@%}
 
