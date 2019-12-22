@@ -1,8 +1,9 @@
 actions:
   pre:
-    debian-setup: mkdir ~/bin && sudo apt update && xargs --arg-file="setup/apt_pkglist" sudo apt -y install
+    debian-setup: mkdir --parents {{@@ env['HOME'] @@}}/bin && sudo apt update && xargs --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" sudo apt -y install
     nbdime-install: pip install --upgrade --quiet nbdime
-    dsf-install: wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy --output-document $HOME/bin/diff-so-fancy && chmod +x $HOME/bin/diff-so-fancy
+    dsf-install: wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy --output-document {{@@ env['HOME'] @@}}/bin/diff-so-fancy && chmod +x {{@@ env['HOME'] @@}}/bin/diff-so-fancy
+    rust-install: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o {{@@ env['HOME'] @@}}/rustup.sh && sh {{@@ env['HOME'] @@}}/rustup.sh --quiet --no-modify-path -y && rm {{@@ env['HOME'] @@}}/rustup.sh && tail {{@@ env['HOME'] @@}}/.cargo/env #source {{@@ env['HOME'] @@}}/.cargo/env 
   post:
     nbdime-vcs-setup: nbdime config-git --enable --global
     vim-plug-setup: vim +PlugInstall +qall
@@ -49,6 +50,7 @@ profiles:
   debian:
     actions:
     - debian-setup
+    - rust-install
     dotfiles:
     - f_vimrc
     - f_bash_aliases
