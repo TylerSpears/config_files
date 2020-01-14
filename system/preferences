@@ -1,0 +1,11 @@
+Package: *
+Pin: release a=*testing*
+Pin-Priority: 550
+
+Package: *
+Pin: release a=*unstable*
+Pin-Priority: 520
+
+Package: syncthing
+Pin: origin apt.syncthing.net
+Pin-Priority: 600
