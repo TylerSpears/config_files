@@ -1,25 +1,10 @@
-actions:
-  pre:
-    debian-setup: mkdir --parents {{@@ env['HOME'] @@}}/bin && sudo apt -qq update
-      && xargs --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" sudo
-      apt -y install
-    nbdime-install: pip install --upgrade --quiet nbdime
-    dsf-install: wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
-      --output-document {{@@ env['HOME'] @@}}/bin/diff-so-fancy && chmod +x {{@@ env['HOME']
-      @@}}/bin/diff-so-fancy
-    rust-install: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o {{@@
-      env['HOME'] @@}}/rustup.sh && sh {{@@ env['HOME'] @@}}/rustup.sh --quiet --no-modify-path
-      -y && rm {{@@ env['HOME'] @@}}/rustup.sh && tail {{@@ env['HOME'] @@}}/.cargo/env
-    z-install: wget https://raw.githubusercontent.com/rupa/z/master/z.sh --output-document
-      {{@@ env['HOME'] @@}}/bin/z.sh && chmod +x {{@@ env['HOME'] @@}}/bin/z.sh
-  post:
-    nbdime-vcs-setup: nbdime config-git --enable --global
-    vim-plug-setup: vim +PlugInstall +qall
 config:
   backup: true
   create: true
   dotpath: dotfiles
   link_dotfile_default: link
+  import_actions:
+    - setup/setup_actions.yaml
 dotfiles:
   f_vimrc:
     src: vimrc
