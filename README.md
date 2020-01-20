@@ -10,6 +10,8 @@ and I will do my best to give credit where credit is due. So, special thanks
 to:
 
 * [dotdrop](https://github.com/deadc0de6/dotdrop)
+* [direnv](https://direnv.net/)
+* [jrnl](https://github.com/jrnl-org/jrnl)
 
 bash:
 * <https://unix.stackexchange.com/a/36874>
@@ -25,6 +27,7 @@ git:
 * <https://gist.github.com/octocat/9257657>
 * <https://dev.to/michi/handy-git-aliases-5ag3>
 * <https://stackoverflow.com/a/18782415>
+* <https://github.com/direnv/direnv/wiki/Git>
 
 vim:
 * <https://github.com/nickjj/dotfiles/blob/master/.vimrc>

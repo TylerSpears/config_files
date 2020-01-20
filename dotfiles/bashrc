@@ -156,3 +156,17 @@ unset __conda_setup
 export PATH="$HOME/.cargo/bin:$PATH"
 {%@@ endif @@%}
 
+# activate direnv hook, if available
+{%@@ if exists_in_path('direnv') @@%}
+eval "$(direnv hook bash)"
+# allow for PS1 variable to be exported to subprocesses
+# https://github.com/direnv/direnv/wiki/Python#bash
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+export -f show_virtual_env
+PS1='$(show_virtual_env)'$PS1
+{%@@ endif @@%}
+

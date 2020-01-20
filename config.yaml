@@ -1,8 +1,8 @@
 actions:
   pre:
-    debian-setup: mkdir --parents {{@@ env['HOME'] @@}}/bin && sudo apt -qq update &&
-      xargs --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" sudo apt
-      -y install
+    debian-setup: mkdir --parents {{@@ env['HOME'] @@}}/bin && sudo apt -qq update
+      && xargs --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" sudo
+      apt -y install
     nbdime-install: pip install --upgrade --quiet nbdime
     dsf-install: wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
       --output-document {{@@ env['HOME'] @@}}/bin/diff-so-fancy && chmod +x {{@@ env['HOME']
@@ -58,6 +58,10 @@ dotfiles:
     src: config/jrnl/jrnl.yaml
     dst: ~/.config/jrnl/jrnl.yaml
     link: nolink
+  f_direnvrc:
+    src: direnvrc
+    dst: ~/.direnvrc
+    link: nolink
 profiles:
   debian:
     actions:
@@ -75,6 +79,7 @@ profiles:
     - f_solarized.vim
     - f_bashrc
     - f_jrnl.yaml
+    - f_direnvrc
   debian_cuda:
     include:
     - debian
