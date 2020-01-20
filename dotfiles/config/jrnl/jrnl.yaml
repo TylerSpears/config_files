@@ -1,13 +1,18 @@
-default_hour: 9
-default_minute: 0
-editor: ''
+# {{@@ header() @@}}
+
+default_hour: 0
+default_minute: 1
+editor: 'vim'
 encrypt: false
 highlight: true
 indent_character: '|'
 journals:
-  default: /home/tyler/Documents/jrnl/journal.txt
+  default: "{{@@ env['HOME'] @@}}/Documents/jrnl/journal.txt"
+  {%@@ if exists('$HOME/Projects/_weller_labwork') @@%}
+  lab: "{{@@ env['HOME'] @@}}/Projects/_weller_labwork/journal/journal.txt"
+  {%@@ endif @@%}
 linewrap: 79
 tagsymbols: '@'
 template: false
-timeformat: '%Y-%m-%d %H:%M'
+timeformat: '%Y_%m_%d_%H:%M'
 version: 2.1.1
