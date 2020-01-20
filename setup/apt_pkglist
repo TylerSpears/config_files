@@ -5,4 +5,5 @@ exa
 bat
 fd[-]find
 wget
+direnv
 
