@@ -23,9 +23,9 @@ alias jupyd="$CONDA_EXE run -n jupyter_server jupyter"
 alias diff="diff-so-fancy"
 {%@@ endif @@%}
 
-{%@@ if exists_in_path('bat') @@%}
+{%@@ if exists_in_path('batcat') @@%}
 # improved cat
-alias cat="bat"
+alias cat="batcat"
 {%@@ endif @@%}
 
 {%@@ if exists_in_path('exa') @@%}
@@ -49,6 +49,6 @@ alias dotdrop="{{@@ env['HOME'] @@}}/dotfiles/dotdrop.sh --profile={{@@ env['DOT
 
 # archive box
 {%@@ if exists_in_path('archivebox') @@%}
-alias archivebox='env OUTPUT_DIR="{{@@ env['HOME'] @@}}/Documents/archivebox" archivebox'
+alias archivebox='env OUTPUT_DIR="{{@@ env['HOME'] @@}}/Documents/archivebox" MEDIA_TIMEOUT=120 archivebox'
 {%@@ endif @@%}
 

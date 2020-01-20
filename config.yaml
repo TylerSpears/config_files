@@ -1,6 +1,6 @@
 actions:
   pre:
-    debian-setup: mkdir --parents {{@@ env['HOME'] @@}}/bin && sudo apt update &&
+    debian-setup: mkdir --parents {{@@ env['HOME'] @@}}/bin && sudo apt -qq update &&
       xargs --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" sudo apt
       -y install
     nbdime-install: pip install --upgrade --quiet nbdime
