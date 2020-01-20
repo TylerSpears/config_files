@@ -1,10 +1,17 @@
 actions:
   pre:
-    debian-setup: mkdir --parents {{@@ env['HOME'] @@}}/bin && sudo apt update && xargs --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" sudo apt -y install
+    debian-setup: mkdir --parents {{@@ env['HOME'] @@}}/bin && sudo apt update &&
+      xargs --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" sudo apt
+      -y install
     nbdime-install: pip install --upgrade --quiet nbdime
-    dsf-install: wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy --output-document {{@@ env['HOME'] @@}}/bin/diff-so-fancy && chmod +x {{@@ env['HOME'] @@}}/bin/diff-so-fancy
-    rust-install: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o {{@@ env['HOME'] @@}}/rustup.sh && sh {{@@ env['HOME'] @@}}/rustup.sh --quiet --no-modify-path -y && rm {{@@ env['HOME'] @@}}/rustup.sh && tail {{@@ env['HOME'] @@}}/.cargo/env #source {{@@ env['HOME'] @@}}/.cargo/env 
-    z-install: wget https://raw.githubusercontent.com/rupa/z/master/z.sh --output-document {{@@ env['HOME'] @@}}/bin/z.sh && chmod +x {{@@ env['HOME'] @@}}/bin/z.sh
+    dsf-install: wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+      --output-document {{@@ env['HOME'] @@}}/bin/diff-so-fancy && chmod +x {{@@ env['HOME']
+      @@}}/bin/diff-so-fancy
+    rust-install: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o {{@@
+      env['HOME'] @@}}/rustup.sh && sh {{@@ env['HOME'] @@}}/rustup.sh --quiet --no-modify-path
+      -y && rm {{@@ env['HOME'] @@}}/rustup.sh && tail {{@@ env['HOME'] @@}}/.cargo/env
+    z-install: wget https://raw.githubusercontent.com/rupa/z/master/z.sh --output-document
+      {{@@ env['HOME'] @@}}/bin/z.sh && chmod +x {{@@ env['HOME'] @@}}/bin/z.sh
   post:
     nbdime-vcs-setup: nbdime config-git --enable --global
     vim-plug-setup: vim +PlugInstall +qall
@@ -18,7 +25,7 @@ dotfiles:
     src: vimrc
     dst: ~/.vimrc
     actions:
-      - vim-plug-setup
+    - vim-plug-setup
   f_bash_aliases:
     src: bash_aliases
     dst: ~/.bash_aliases
@@ -35,9 +42,9 @@ dotfiles:
     src: gitconfig
     dst: ~/.gitconfig
     actions:
-      - nbdime-install
-      - nbdime-vcs-setup
-      - dsf-install
+    - nbdime-install
+    - nbdime-vcs-setup
+    - dsf-install
   d_git:
     src: git
     dst: ~/.git
@@ -47,6 +54,10 @@ dotfiles:
   f_bashrc:
     src: bashrc
     dst: ~/.bashrc
+  f_jrnl.yaml:
+    src: config/jrnl/jrnl.yaml
+    dst: ~/.config/jrnl/jrnl.yaml
+    link: nolink
 profiles:
   debian:
     actions:
@@ -63,6 +74,7 @@ profiles:
     - d_git
     - f_solarized.vim
     - f_bashrc
+    - f_jrnl.yaml
   debian_cuda:
     include:
     - debian

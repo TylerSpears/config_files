@@ -1,0 +1,13 @@
+default_hour: 9
+default_minute: 0
+editor: ''
+encrypt: false
+highlight: true
+indent_character: '|'
+journals:
+  default: /home/tyler/Documents/jrnl/journal.txt
+linewrap: 79
+tagsymbols: '@'
+template: false
+timeformat: '%Y-%m-%d %H:%M'
+version: 2.1.1

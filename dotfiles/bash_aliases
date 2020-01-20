@@ -47,3 +47,8 @@ export _Z_CMD="j"
 # dotdrop
 alias dotdrop="{{@@ env['HOME'] @@}}/dotfiles/dotdrop.sh --profile={{@@ env['DOTDROP_PROFILE'] @@}} --cfg={{@@ env['HOME'] @@}}/dotfiles/config.yaml"
 
+# archive box
+{%@@ if exists_in_path('archivebox') @@%}
+alias archivebox='env OUTPUT_DIR="{{@@ env['HOME'] @@}}/Documents/archivebox" archivebox'
+{%@@ endif @@%}
+
