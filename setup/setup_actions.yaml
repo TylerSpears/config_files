@@ -32,6 +32,12 @@ actions:
         chmod +x {{@@ env['HOME'] @@}}/bin/z.sh
       fi
 
+    tmux-install: |
+      if test ! -d {{@@ env['HOME'] @@}}/.tmux/plugins/tpm ; then
+        git clone https://github.com/tmux-plugins/tpm {{@@ env['HOME'] @@}}/.tmux/plugins/tpm
+        {{@@ env['HOME'] @@}}/.tmux/plugins/tpm/bin/install_plugins
+      fi
+
   post:
     nbdime-vcs-setup: nbdime config-git --enable --global
     vim-plug-setup: vim +PlugInstall +qall

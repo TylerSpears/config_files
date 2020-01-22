@@ -7,9 +7,10 @@ encrypt: false
 highlight: true
 indent_character: '|'
 journals:
-  default: "{{@@ env['HOME'] @@}}/Documents/jrnl/journal.txt"
   {%@@ if exists('$HOME/Projects/_weller_labwork') @@%}
-  lab: "{{@@ env['HOME'] @@}}/Projects/_weller_labwork/journal/journal.txt"
+  default: "{{@@ env['HOME'] @@}}/Projects/_weller_labwork/journal/journal.txt"
+  {%@@ else @@%}
+  default: "{{@@ env['HOME'] @@}}/Documents/jrnl/journal.txt"
   {%@@ endif @@%}
 linewrap: 79
 tagsymbols: '@'

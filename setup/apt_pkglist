@@ -6,4 +6,5 @@ bat
 fd[-]find
 wget
 direnv
+tmux
 

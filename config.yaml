@@ -4,7 +4,7 @@ config:
   dotpath: dotfiles
   link_dotfile_default: link
   import_actions:
-    - setup/setup_actions.yaml
+  - setup/setup_actions.yaml
 dotfiles:
   f_vimrc:
     src: vimrc
@@ -47,12 +47,17 @@ dotfiles:
     src: direnvrc
     dst: ~/.direnvrc
     link: nolink
+  f_tmux.conf:
+    src: tmux.conf
+    dst: ~/.tmux.conf
+    link: nolink
 profiles:
   debian:
     actions:
     - debian-setup
     - rust-install
     - z-install
+    - tmux-install
     dotfiles:
     - f_vimrc
     - f_bash_aliases
@@ -65,6 +70,7 @@ profiles:
     - f_bashrc
     - f_jrnl.yaml
     - f_direnvrc
+    - f_tmux.conf
   debian_cuda:
     include:
     - debian

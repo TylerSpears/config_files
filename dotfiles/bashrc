@@ -170,3 +170,6 @@ export -f show_virtual_env
 PS1='$(show_virtual_env)'$PS1
 {%@@ endif @@%}
 
+# set version of java with JAVA_HOME
+JAVA_HOME='/usr/lib/jvm/default-java'
+
