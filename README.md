@@ -15,6 +15,7 @@ to:
 
 bash:
 * <https://unix.stackexchange.com/a/36874>
+* <https://unix.stackexchange.com/a/541352>
 
 conda:
 * <https://gist.github.com/ocefpaf/863fc5df6ed8444378fbb1211ad8feb1>
@@ -34,3 +35,14 @@ vim:
 * <https://github.com/plasticboy/vim-markdown#syntax-extensions>
 * <http://ethanschoonover.com/solarized>
 
+tmux:
+* <https://github.com/tmux-plugins/tpm>
+* <https://github.com/tmux-plugins/tmux-sensible>
+* <https://github.com/tmux-plugins/tmux-prefix-highlight>
+* <https://github.com/tmux-plugins/tmux-pain-control>
+* <https://github.com/tmux-plugins/tmux-copycat>
+* <https://github.com/tmux-plugins/tmux-yank>
+* <https://github.com/tmux-plugins/vim-tmux-focus-events>
+* <https://github.com/roxma/vim-tmux-clipboard>
+* <https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/>
+* <https://unix.stackexchange.com/a/320496>

@@ -2,12 +2,17 @@ actions:
   pre:
     debian-setup: | 
       mkdir --parents {{@@ env['HOME'] @@}}/bin
-      if ! xargs --arg-file "{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" dpkg-query -W &>/dev/null ; then
+      if ! sh -c 'xargs --arg-file "{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" dpkg-query -W' >/dev/null 2>&1 ; then
+        sync
         sudo apt -qq update
         xargs --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" sudo apt -y install
       fi
 
-    nbdime-install: pip install --upgrade --quiet nbdime
+    nbdime-install: |
+      if ! command -v nbdime ; then
+        pip install --upgrade --quiet nbdime
+      fi
+
     dsf-install: |
       if ! command -v diff-so-fancy ; then
         wget \

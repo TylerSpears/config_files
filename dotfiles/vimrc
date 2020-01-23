@@ -27,8 +27,6 @@ Plug 'https://github.com/tmhedberg/SimpylFold.git'
 " Drastically improve insert mode performance in files with folds.
 Plug 'Konfekt/FastFold'
 
-" Pass focus events from tmux to Vim (useful for autoread and linting tools).
-Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Python plugins
 Plug 'vim-python/python-syntax'
@@ -49,6 +47,11 @@ Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 " use pre build
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }"
 Plug 'dhruvasagar/vim-table-mode'
+
+" tmux integration
+" Pass focus events from tmux to Vim (useful for autoread and linting tools).
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'roxma/vim-tmux-clipboard'
 
 " end vim-plug declarations
 call plug#end()
