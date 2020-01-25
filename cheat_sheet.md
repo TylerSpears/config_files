@@ -25,6 +25,10 @@ A quick cheat sheet for my configuration.
 `prefix + < `: moves current window one position to the left
 `prefix + > `: moves current window one position to the right
 
+`prefix + I`: installs new plugins from GitHub or any other git repository. Refreshes TMUX environment
+`prefix + U`: updates plugin(s)
+`prefix + alt + u`: remove/uninstall plugins not on the plugin list
+
 ## vim
 
 `\`: leader character

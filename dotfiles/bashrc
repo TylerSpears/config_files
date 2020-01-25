@@ -151,7 +151,7 @@ unset __conda_setup
 . z.sh
 {%@@ endif @@%}
 
-{%@@ if exists_in_path('rustc') @@%}
+{%@@ if exists('$HOME/.cargo/bin') @@%}
 # append rust utilities onto PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 {%@@ endif @@%}

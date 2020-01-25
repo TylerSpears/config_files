@@ -26,7 +26,7 @@ actions:
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o {{@@env['HOME'] @@}}/rustup.sh
         sh {{@@ env['HOME'] @@}}/rustup.sh --quiet --no-modify-path -y
         rm {{@@ env['HOME'] @@}}/rustup.sh
-        tail {{@@ env['HOME'] @@}}/.cargo/env
+        . {{@@ env['HOME'] @@}}/.cargo/env
       fi
 
     z-install: |
@@ -40,8 +40,8 @@ actions:
     tmux-install: |
       if test ! -d {{@@ env['HOME'] @@}}/.tmux/plugins/tpm ; then
         git clone https://github.com/tmux-plugins/tpm {{@@ env['HOME'] @@}}/.tmux/plugins/tpm
-        {{@@ env['HOME'] @@}}/.tmux/plugins/tpm/bin/install_plugins
       fi
+      {{@@ env['HOME'] @@}}/.tmux/plugins/tpm/bin/install_plugins
 
   post:
     nbdime-vcs-setup: nbdime config-git --enable --global
