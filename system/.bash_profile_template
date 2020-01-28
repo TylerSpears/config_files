@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# This is a "template" for a ~/.bash_profile, without sharing anything private. Simply
+# copying it does nothing.
+
+# This file contains environment variables and configurations that are
+# specific to this host only. If anything can be easily put into
+# a shared configuration file, then it should be there. This is meant
+# as a "last resort".
+
+# Environment variable for setting the character that prefixes the terminal line.
+# My personal preference is to use a greek character that corresponds to the first letter
+# of the machine's hostname. This replaces the more commonly-used '$' in *nix.
+# export PS1_CHAR=ε
+
+# Environment variable for this machine's dotdrop profile. Only 'debian' is valid for now.
+# export DOTDROP_PROFILE='debian'
+
+# Sources ~/.bash_profile_public as an extension of ~/.bash_profile, but for commands
+# that can be safely shared.
+#if [ -f "$HOME/.bash_profile_public" ]; then
+#        . "$HOME/.bash_profile_public"
+#fi
+
+# source .bashrc if using bash
+#if [ -n "$BASH_VERSION" ]; then
+#    # include .bashrc if it exists
+#    if [ -f "$HOME/.bashrc" ]; then
+#    . "$HOME/.bashrc"
+#    fi
+#fi
+

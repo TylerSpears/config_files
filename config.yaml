@@ -51,6 +51,10 @@ dotfiles:
     src: tmux.conf
     dst: ~/.tmux.conf
     link: nolink
+  f_bash_profile_public:
+    src: bash_profile_public
+    dst: ~/.bash_profile_public
+    link: nolink
 profiles:
   debian:
     actions:
@@ -71,6 +75,7 @@ profiles:
     - f_jrnl.yaml
     - f_direnvrc
     - f_tmux.conf
+    - f_bash_profile_public
   debian_cuda:
     include:
     - debian

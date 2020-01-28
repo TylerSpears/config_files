@@ -26,6 +26,8 @@ alias diff="diff-so-fancy"
 {%@@ if exists_in_path('batcat') @@%}
 # improved cat
 alias cat="batcat"
+{%@@ elif exists_in_path('bat') @@%}
+alias cat="bat"
 {%@@ endif @@%}
 
 {%@@ if exists_in_path('exa') @@%}

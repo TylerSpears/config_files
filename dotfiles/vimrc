@@ -1,8 +1,9 @@
+" ~/.vimrc
+" {{@@ header() @@}}
 " Vim configuration file
-" Collected from various sources, including (but not limited to):
-" - https://github.com/nickjj/dotfiles/blob/master/.vimrc
-"
+" Collected from various sources
 
+" disable compatibility with vi
 set nocompatible              " be iMproved, required
 
 " automatically download vim-plug if not already done

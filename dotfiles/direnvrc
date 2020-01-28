@@ -1,4 +1,4 @@
-
+# {{@@ header() @@}}
 # dotfile for defining functions in direnv
 
 # anaconda virtual environment layout
@@ -19,3 +19,37 @@ layout_anaconda() {
   fi;
 }
 
+alias_dir=$PWD/.direnv/aliases
+rm -rf "$alias_dir"
+
+export_alias() {
+  local name=$1
+  shift
+  local target="$alias_dir/$name"
+  mkdir -p "$alias_dir"
+  PATH_add "$alias_dir"
+  echo "#!/usr/bin/env bash" > "$target"
+  echo "$@ \"\$@\"" >> "$target"
+  chmod +x "$target"
+}
+# enable weird hack to export aliases in a .envrc file
+# clear the previous aliases, to avoid directory build-up
+# alias_dir=$PWD/.direnv/aliases
+# rm -rf "$alias_dir"
+# 
+# # Example: export_alias zz "ls -la"
+# export_function() {
+#   local name=$1
+#   local alias_dir=$PWD/.direnv/aliases
+#   mkdir -p "$alias_dir"
+#   PATH_add "$alias_dir"
+#   local target="$alias_dir/$name"
+#   if declare -f "$name" >/dev/null; then
+#     echo "#!$SHELL" > "$target"
+#     declare -f "$name" >> "$target" 2>/dev/null
+#     # Notice that we add shell variables to the function trigger.
+#     echo "$name \$*" >> "$target"
+#     chmod +x "$target"
+#   fi
+# }
+# 

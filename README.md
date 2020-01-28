@@ -46,3 +46,8 @@ tmux:
 * <https://github.com/roxma/vim-tmux-clipboard>
 * <https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/>
 * <https://unix.stackexchange.com/a/320496>
+
+direnv:
+* <https://dreisbach.us/articles/a-favorite-development-tool-direnv/>
+* <https://github.com/direnv/direnv/issues/73>
+
