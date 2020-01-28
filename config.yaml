@@ -39,6 +39,11 @@ dotfiles:
   f_bashrc:
     src: bashrc
     dst: ~/.bashrc
+    actions:
+      - rust-install
+      - debian-setup
+      - z-install
+      - tmux-install
   f_jrnl.yaml:
     src: config/jrnl/jrnl.yaml
     dst: ~/.config/jrnl/jrnl.yaml
@@ -51,6 +56,8 @@ dotfiles:
     src: tmux.conf
     dst: ~/.tmux.conf
     link: nolink
+    actions:
+      - tmux-install
   f_bash_profile_public:
     src: bash_profile_public
     dst: ~/.bash_profile_public
