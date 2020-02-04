@@ -26,3 +26,6 @@ fi
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 {%@@ endif @@%}
 
+{%@@ if exists_in_path('pandoc') @@%}
+eval "$(pandoc --bash-completion)"
+{%@@endif @@%}
