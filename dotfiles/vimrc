@@ -24,9 +24,9 @@ Plug 'editorconfig/editorconfig-vim'
 " Navigation plugins
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'https://github.com/tmhedberg/SimpylFold.git'
+" Plug 'https://github.com/tmhedberg/SimpylFold.git'
 " Drastically improve insert mode performance in files with folds.
-Plug 'Konfekt/FastFold'
+" Plug 'Konfekt/FastFold'
 
 
 " Python plugins
@@ -48,6 +48,7 @@ Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 " use pre build
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }"
 Plug 'dhruvasagar/vim-table-mode'
+" Plug 'masukomi/vim-markdown-folding'
 
 " tmux integration
 " Pass focus events from tmux to Vim (useful for autoread and linting tools).
@@ -57,7 +58,8 @@ Plug 'roxma/vim-tmux-clipboard'
 " end vim-plug declarations
 call plug#end()
 
-let python_highlight_all=1
+
+"""""""""""""""" Global vim configuration
 syntax enable
 syntax on
 
@@ -101,30 +103,39 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Enable folding
+" Configure folding
 set foldmethod=indent
-set foldlevel=99
+set foldlevelstart=20
+" Note, perl automatically sets foldmethod in the syntax file
+autocmd Syntax c,cpp,vim,xml,html,xhtml setlocal foldmethod=syntax
+autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
 " Enable folding with the spacebar
-nnoremap <space> za
+" nnoremap <space> za
 
+"""""""""""""""" Python file configuration
 " set PEP8 compliant properties for .py files
 " and some Black format
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-"    \ set textwidth=79 |
-    \ set textwidth=90 |
+    \ set textwidth=90 | 
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix
+
+let python_highlight_all=1
 
 " flag unnecessary whitespace
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 set encoding=utf-8
+" highlight column index 90 to encourage better coding practice
+" according to ~~PEP 8~~ Black standard
+set cc=90
 
+"""""""""""""""" NERDTree configuration
 " NERDTREE ignores all *.pyc files
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 " start NERDTree automatically when opening a directory
@@ -133,10 +144,8 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 " Ctrl+n shortcut to open NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
-" highlight column index 90 to encourage better coding practice
-" according to ~~PEP 8~~ Black standard
-set cc=90
 
+"""""""""""""""" markdown file configuration
 " plasticboy/vim-markdown
 " Enable extensions for `vim-markdown`, see 
 " <https://github.com/plasticboy/vim-markdown#syntax-extensions>
@@ -144,17 +153,22 @@ set cc=90
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
-set conceallevel=2
-let g:vim_markdown_conceal = 1
+" set conceallevel=2
+" let g:vim_markdown_conceal = 1
 
-autocmd FileType markdown let b:sleuth_automatic=0
-autocmd FileType markdown set conceallevel=0
-autocmd FileType markdown normal zR
+" autocmd FileType markdown let b:sleuth_automatic=0
+" autocmd FileType markdown set conceallevel=0
+" autocmd FileType markdown normal zR
 
 " iamcco/markdown-preview.nvim
 let g:mkdp_refresh_slow=1
 
-" Configurations for `vim-table-mode`
+" configure vim-markdown-folding
+" if has("autocmd")
+"         filetype plugin indent on
+" endif
+
+"""""""""""""""" Configuration for `vim-table-mode`
 " - TAS 8/18/2019
 let g:table_mode_corner='|'
 let g:table_mode_corner_corner='|'
@@ -174,6 +188,4 @@ inoreabbrev <expr> <bar><bar>
 inoreabbrev <expr> __
           \ <SID>isAtStartOfLine('__') ?
           \ '<c-o>:silent! TableModeDisable<cr>' : '__'
-
-
 

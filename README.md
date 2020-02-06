@@ -11,8 +11,7 @@ to:
 
 * [dotdrop](https://github.com/deadc0de6/dotdrop)
 * [direnv](https://direnv.net/)
-* [jrnl](https://github.com/jrnl-org/jrnl)
-
+* [jrnl](https://github.com/jrnl-org/jrnl) 
 bash:
 * <https://unix.stackexchange.com/a/36874>
 * <https://unix.stackexchange.com/a/541352>
@@ -34,6 +33,7 @@ vim:
 * <https://github.com/nickjj/dotfiles/blob/master/.vimrc>
 * <https://github.com/plasticboy/vim-markdown#syntax-extensions>
 * <http://ethanschoonover.com/solarized>
+* <https://vim.fandom.com/wiki/All_folds_open_when_opening_a_file>
 
 tmux:
 * <https://github.com/tmux-plugins/tpm>
