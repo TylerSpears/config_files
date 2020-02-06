@@ -41,7 +41,7 @@ actions:
       if test ! -d {{@@ env['HOME'] @@}}/.tmux/plugins/tpm ; then
         git clone https://github.com/tmux-plugins/tpm {{@@ env['HOME'] @@}}/.tmux/plugins/tpm
       fi
-      {{@@ env['HOME'] @@}}/.tmux/plugins/tpm/bin/install_plugins
+      TMUX_PLUGIN_MANAGER_PATH="{{@@ env['HOME'] @@}}/.tmux/plugins/tpm"  {{@@ env['HOME'] @@}}/.tmux/plugins/tpm/bin/install_plugins
 
   post:
     nbdime-vcs-setup: nbdime config-git --enable --global

@@ -28,4 +28,8 @@ export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 {%@@ if exists_in_path('pandoc') @@%}
 eval "$(pandoc --bash-completion)"
-{%@@endif @@%}
+{%@@ endif @@%}
+
+{%@@ if exists('$HOME/.tmux/plugins/tpm') @@%}
+export TMUX_PLUGIN_MANAGER_PATH="~/.tmux/plugins/tpm"
+{%@@ endif @@%}
