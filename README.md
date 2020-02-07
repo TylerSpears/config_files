@@ -12,12 +12,15 @@ to:
 * [dotdrop](https://github.com/deadc0de6/dotdrop)
 * [direnv](https://direnv.net/)
 * [jrnl](https://github.com/jrnl-org/jrnl) 
+
 bash:
 * <https://unix.stackexchange.com/a/36874>
 * <https://unix.stackexchange.com/a/541352>
 
 conda:
 * <https://gist.github.com/ocefpaf/863fc5df6ed8444378fbb1211ad8feb1>
+* <https://www.anaconda.com/understanding-and-improving-condas-performance/>
+* <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-channels.html>
 
 git:
 * <https://github.com/so-fancy/diff-so-fancy>
