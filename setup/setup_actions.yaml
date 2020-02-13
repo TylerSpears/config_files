@@ -31,11 +31,12 @@ actions:
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o {{@@env['HOME'] @@}}/rustup.sh
         sh {{@@ env['HOME'] @@}}/rustup.sh --quiet --no-modify-path -y
         rm {{@@ env['HOME'] @@}}/rustup.sh
-        . {{@@ env['HOME'] @@}}/.cargo/env
+        source {{@@ env['HOME'] @@}}/.cargo/env
       fi
 
     cargo-setup: |
       echo "Installing cargo packages"
+      source {{@@ env['HOME'] @@}}/.cargo/env
       sh -c \
         'xargs --arg-file "{{@@ env['HOME'] @@}}/dotfiles/setup/cargo_pkglist" \
         cargo install --jobs 4 --quiet' >/dev/null 2>&1
