@@ -1,7 +1,6 @@
 vim
 pandoc
 git
-fd[-]find
 wget
 direnv
 tmux

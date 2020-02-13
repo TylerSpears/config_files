@@ -21,7 +21,9 @@ git clone --recurse-submodules -j2 \
 cd ~/dotfiles
 pip3 install -r dotdrop/requirements.txt --user
 ./dotdrop/bootstrap.sh
-./dotdrop.sh install
+# for now, installation requires an env var
+# DOTDROP_PROFILE to be set to 'debian'
+DOTDROP_PROFILE=debian ./dotdrop.sh install
 ```
 
 ## Special Thanks
