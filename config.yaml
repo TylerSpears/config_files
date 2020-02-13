@@ -27,7 +27,7 @@ dotfiles:
     src: gitconfig
     dst: ~/.gitconfig
     actions:
-    - nbdime-install
+    - pip-setup
     - nbdime-vcs-setup
     - dsf-install
   d_git:
@@ -41,6 +41,7 @@ dotfiles:
     dst: ~/.bashrc
     actions:
       - rust-install
+      - cargo-setup
       - debian-setup
       - z-install
       - tmux-install
@@ -48,10 +49,15 @@ dotfiles:
     src: config/jrnl/jrnl.yaml
     dst: ~/.config/jrnl/jrnl.yaml
     link: nolink
+    actions:
+      - pip-setup
+      - debian-setup
   f_direnvrc:
     src: direnvrc
     dst: ~/.direnvrc
     link: nolink
+    actions:
+      - debian-setup
   f_tmux.conf:
     src: tmux.conf
     dst: ~/.tmux.conf
@@ -67,6 +73,8 @@ profiles:
     actions:
     - debian-setup
     - rust-install
+    - cargo-setup
+    - pip-setup
     - z-install
     - tmux-install
     dotfiles:

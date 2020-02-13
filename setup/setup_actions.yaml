@@ -4,17 +4,21 @@ actions:
       mkdir --parents {{@@ env['HOME'] @@}}/bin
       if ! sh -c 'xargs --arg-file "{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" dpkg-query -W' >/dev/null 2>&1 ; then
         sync
+        echo "Updating apt package list"
         sudo apt -qq update
+        echo "Installing apt packages"
         xargs --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" sudo apt -y install
       fi
 
-    nbdime-install: |
-      if ! command -v nbdime ; then
-        pip install --upgrade --quiet nbdime
-      fi
+    pip-setup: |
+      echo "Installing pip packages"
+      xargs \
+        --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/pip_pkglist" \
+        pip3 install --upgrade --quiet
 
     dsf-install: |
       if ! command -v diff-so-fancy ; then
+        echo "Installing diff-so-fancy"
         wget \
           https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy \
           --output-document {{@@ env['HOME'] @@}}/bin/diff-so-fancy
@@ -23,14 +27,24 @@ actions:
 
     rust-install: |
       if ! command -v cargo ; then
+        echo "Installing rust"
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o {{@@env['HOME'] @@}}/rustup.sh
         sh {{@@ env['HOME'] @@}}/rustup.sh --quiet --no-modify-path -y
         rm {{@@ env['HOME'] @@}}/rustup.sh
         . {{@@ env['HOME'] @@}}/.cargo/env
       fi
 
+    cargo-setup: |
+      echo "Installing cargo packages"
+      sh -c \
+        'xargs --arg-file "{{@@ env['HOME'] @@}}/dotfiles/setup/cargo_pkglist" \
+        cargo install --jobs 4 --quiet' >/dev/null 2>&1
+      # command fails even if the packages are already installed...
+      echo
+
     z-install: |
       if ! command -v z.sh ; then
+        echo "Installing z"
         wget \
           https://raw.githubusercontent.com/rupa/z/master/z.sh \
           --output-document {{@@ env['HOME'] @@}}/bin/z.sh
@@ -39,9 +53,13 @@ actions:
 
     tmux-install: |
       if test ! -d {{@@ env['HOME'] @@}}/.tmux/plugins/tpm ; then
+        echo "Installing tmux plugin manager"
         git clone https://github.com/tmux-plugins/tpm {{@@ env['HOME'] @@}}/.tmux/plugins/tpm
       fi
-      TMUX_PLUGIN_MANAGER_PATH="{{@@ env['HOME'] @@}}/.tmux/plugins/tpm"  {{@@ env['HOME'] @@}}/.tmux/plugins/tpm/bin/install_plugins
+      echo "Installing tmux plugin with tpm"
+      TMUX_PLUGIN_MANAGER_PATH="{{@@ env['HOME'] @@}}/.tmux/plugins/tpm"  \
+        {{@@ env['HOME'] @@}}/.tmux/plugins/tpm/bin/install_plugins &>/dev/null
+      tmux source $HOME/.tmux.conf
 
   post:
     nbdime-vcs-setup: nbdime config-git --enable --global

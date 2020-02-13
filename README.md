@@ -3,6 +3,27 @@
 Repository for my commonly-used configuration files, including dotfiles, 
 (non-sensitive) system files, configurations, and more.
 
+## Installation
+
+Requirements:
+* unix shell (only tested on bash)
+* root privileges
+* git
+* python3
+* pip3
+
+To install:
+
+```bash
+mkdir ~/dotfiles
+git clone --recurse-submodules -j2 \
+    https://github.com/TylerSpears/config_files.git ~/dotfiles
+cd ~/dotfiles
+pip3 install -r dotdrop/requirements.txt --user
+./dotdrop/bootstrap.sh
+./dotdrop.sh install
+```
+
 ## Special Thanks
 
 These configurations were largely taken from or based on the work of others,

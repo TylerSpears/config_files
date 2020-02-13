@@ -1,10 +1,13 @@
 vim
 pandoc
 git
-exa
-bat
 fd[-]find
 wget
 direnv
 tmux
+llvm
+curl
+clang
+python3
+python3-pip
 
