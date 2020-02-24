@@ -57,4 +57,5 @@ alias archivebox='env OUTPUT_DIR="{{@@ env['HOME'] @@}}/Documents/archivebox" ME
 alias copydir="rsync --verbose --archive --human-readable --compress --recursive --info=progress2"
 alias copydir-update="copydir --update"
 alias copydir-resume="copydir --append-verify"
+alias copyfiles="rsync --verbose --archive --human-readable --compress --info=progress2"
 {%@@ endif @@%}
