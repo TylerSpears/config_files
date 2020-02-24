@@ -23,11 +23,11 @@ alias jupyd="$CONDA_EXE run -n jupyter_server jupyter"
 alias diff="diff-so-fancy"
 {%@@ endif @@%}
 
-{%@@ if exists_in_path('batcat') @@%}
+{%@@ if exists_in_path('bat') @@%}
 # improved cat
-alias cat="batcat"
-{%@@ elif exists_in_path('bat') @@%}
 alias cat="bat"
+{%@@ elif exists_in_path('batcat') @@%}
+alias cat="batcat"
 {%@@ endif @@%}
 
 {%@@ if exists_in_path('exa') @@%}
@@ -36,8 +36,7 @@ alias l="exa -lahF"
 {%@@ endif @@%}
 
 # improved 'find'
-{%@@ if exists_in_path('fdfind') @@%}
-alias fd="fdfind"
+{%@@ if exists_in_path('fd') @@%}
 alias find="fd"
 {%@@ else @@%}
 alias fd="find"
