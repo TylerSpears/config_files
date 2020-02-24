@@ -54,3 +54,8 @@ alias dotdrop="{{@@ env['HOME'] @@}}/dotfiles/dotdrop.sh --profile={{@@ env['DOT
 alias archivebox='env OUTPUT_DIR="{{@@ env['HOME'] @@}}/Documents/archivebox" MEDIA_TIMEOUT=120 archivebox'
 {%@@ endif @@%}
 
+{%@@ if exists_in_path('rsync') @@%}
+alias copydir="rsync --verbose --archive --human-readable --compress --recursive --info=progress2"
+alias copydir-update="copydir --update"
+alias copydir-resume="copydir --append-verify"
+{%@@ endif @@%}

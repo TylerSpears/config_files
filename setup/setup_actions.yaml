@@ -4,21 +4,21 @@ actions:
       mkdir --parents {{@@ env['HOME'] @@}}/bin
       if ! sh -c 'xargs --arg-file "{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" dpkg-query -W' >/dev/null 2>&1 ; then
         sync
-        echo "Updating apt package list"
+        echo "======= Updating apt package list ======="
         sudo apt -qq update
-        echo "Installing apt packages"
+        echo "======= Installing apt packages ======="
         xargs --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/apt_pkglist" sudo apt -y install
       fi
 
     pip-setup: |
-      echo "Installing pip packages"
+      echo "======= Installing pip packages ======="
       xargs \
         --arg-file="{{@@ env['HOME'] @@}}/dotfiles/setup/pip_pkglist" \
         pip3 install --upgrade --quiet
 
     dsf-install: |
       if ! command -v diff-so-fancy ; then
-        echo "Installing diff-so-fancy"
+        echo "======= Installing diff-so-fancy ======="
         wget \
           https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy \
           --output-document {{@@ env['HOME'] @@}}/bin/diff-so-fancy
@@ -27,25 +27,25 @@ actions:
 
     rust-install: |
       if ! command -v cargo ; then
-        echo "Installing rust"
+        echo "======= Installing rust ======="
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o {{@@env['HOME'] @@}}/rustup.sh
         sh {{@@ env['HOME'] @@}}/rustup.sh --quiet --no-modify-path -y
         rm {{@@ env['HOME'] @@}}/rustup.sh
-        source {{@@ env['HOME'] @@}}/.cargo/env
+        . {{@@ env['HOME'] @@}}/.cargo/env
       fi
 
     cargo-setup: |
-      echo "Installing cargo packages"
-      source {{@@ env['HOME'] @@}}/.cargo/env
+      echo "======= Installing cargo packages ======="
+      . {{@@ env['HOME'] @@}}/.cargo/env
       sh -c \
         'xargs --arg-file "{{@@ env['HOME'] @@}}/dotfiles/setup/cargo_pkglist" \
-        cargo install --jobs 4 --quiet' >/dev/null 2>&1
+        cargo install --jobs 4' #>/dev/null 2>&1
       # command fails even if the packages are already installed...
       echo
 
     z-install: |
       if ! command -v z.sh ; then
-        echo "Installing z"
+        echo "======= Installing z ======="
         wget \
           https://raw.githubusercontent.com/rupa/z/master/z.sh \
           --output-document {{@@ env['HOME'] @@}}/bin/z.sh
