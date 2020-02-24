@@ -57,12 +57,12 @@ actions:
         echo "Installing tmux plugin manager"
         git clone https://github.com/tmux-plugins/tpm {{@@ env['HOME'] @@}}/.tmux/plugins/tpm
       fi
-      echo "Installing tmux plugin with tpm"
-      TMUX_PLUGIN_MANAGER_PATH="{{@@ env['HOME'] @@}}/.tmux/plugins/tpm"  \
-        {{@@ env['HOME'] @@}}/.tmux/plugins/tpm/bin/install_plugins &>/dev/null
-      tmux source $HOME/.tmux.conf
 
   post:
     nbdime-vcs-setup: nbdime config-git --enable --global
     vim-plug-setup: vim +PlugInstall +qall
-
+    tmux-tpm-setup: |
+        echo "Installing tmux plugin with tpm"
+        TMUX_PLUGIN_MANAGER_PATH="{{@@ env['HOME'] @@}}/.tmux/plugins/tpm"  \
+                {{@@ env['HOME'] @@}}/.tmux/plugins/tpm/bin/install_plugins &>/dev/null
+        tmux source $HOME/.tmux.conf

@@ -64,6 +64,7 @@ dotfiles:
     link: nolink
     actions:
       - tmux-install
+      - tmux-tpm-setup
   f_bash_profile_public:
     src: bash_profile_public
     dst: ~/.bash_profile_public
@@ -72,11 +73,7 @@ profiles:
   debian:
     actions:
     - debian-setup
-    - rust-install
-    - cargo-setup
-    - pip-setup
     - z-install
-    - tmux-install
     dotfiles:
     - f_vimrc
     - f_bash_aliases
