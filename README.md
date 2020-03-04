@@ -39,6 +39,8 @@ to:
 bash:
 * <https://unix.stackexchange.com/a/36874>
 * <https://unix.stackexchange.com/a/541352>
+* <https://serverfault.com/a/204320> and <http://psung.blogspot.com/2008/05/copying-directory-trees-with-rsync.html>
+for `copydirstruct` rsync trick.
 
 conda:
 * <https://gist.github.com/ocefpaf/863fc5df6ed8444378fbb1211ad8feb1>

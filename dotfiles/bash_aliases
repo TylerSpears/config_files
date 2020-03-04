@@ -58,4 +58,5 @@ alias copydir="rsync --verbose --archive --human-readable --compress --recursive
 alias copydir-update="copydir --update"
 alias copydir-resume="copydir --append-verify"
 alias copyfiles="rsync --verbose --archive --human-readable --compress --info=progress2"
+alias copydirstruct="rsync --archive --include='*/' --exclude='*'"
 {%@@ endif @@%}
