@@ -79,3 +79,7 @@ direnv:
 * <https://dreisbach.us/articles/a-favorite-development-tool-direnv/>
 * <https://github.com/direnv/direnv/issues/73>
 
+python:
+* <https://ljvmiranda921.github.io/notebook/2018/06/21/precommits-using-black-and-flake8/>
+for `pyproject.toml` and `.flake8` config files.
+

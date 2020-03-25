@@ -40,34 +40,38 @@ dotfiles:
     src: bashrc
     dst: ~/.bashrc
     actions:
-      - rust-install
-      - cargo-setup
-      - debian-setup
-      - z-install
-      - tmux-install
+    - rust-install
+    - cargo-setup
+    - debian-setup
+    - z-install
+    - tmux-install
   f_jrnl.yaml:
     src: config/jrnl/jrnl.yaml
     dst: ~/.config/jrnl/jrnl.yaml
     link: nolink
     actions:
-      - pip-setup
-      - debian-setup
+    - pip-setup
+    - debian-setup
   f_direnvrc:
     src: direnvrc
     dst: ~/.direnvrc
     link: nolink
     actions:
-      - debian-setup
+    - debian-setup
   f_tmux.conf:
     src: tmux.conf
     dst: ~/.tmux.conf
     link: nolink
     actions:
-      - tmux-install
-      - tmux-tpm-setup
+    - tmux-install
+    - tmux-tpm-setup
   f_bash_profile_public:
     src: bash_profile_public
     dst: ~/.bash_profile_public
+    link: nolink
+  f_config_flake8:
+    src: config/flake8
+    dst: ~/.config/flake8
     link: nolink
 profiles:
   debian:
@@ -88,6 +92,7 @@ profiles:
     - f_direnvrc
     - f_tmux.conf
     - f_bash_profile_public
+    - f_config_flake8
   debian_cuda:
     include:
     - debian
