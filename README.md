@@ -42,6 +42,10 @@ bash:
 * <https://serverfault.com/a/204320> and <http://psung.blogspot.com/2008/05/copying-directory-trees-with-rsync.html>
 for `copydirstruct` rsync trick.
 
+konsole:
+* <https://superuser.com/a/1292459/764678> for instructions on setting up Ctrl+Backspace
+in Konsole
+
 conda:
 * <https://gist.github.com/ocefpaf/863fc5df6ed8444378fbb1211ad8feb1>
 * <https://www.anaconda.com/understanding-and-improving-condas-performance/>

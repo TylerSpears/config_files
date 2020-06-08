@@ -173,3 +173,9 @@ PS1='$(show_virtual_env)'$PS1
 # set version of java with JAVA_HOME
 JAVA_HOME='/usr/lib/jvm/default-java'
 
+# Set default editor
+EDITOR='code'
+
+# Keyboard bindings
+bind '"\x08":backward-kill-word'
+
