@@ -6,6 +6,10 @@ alias ls="ls --all -l --human-readable --group-directories-first --color"
 # alias printenv for environment variables
 alias printenv="printenv | sed '/.:./ { s/:/\n\t/g; }'"
 
+{%@@ if exists_in_path('tree') @@%}
+alias t="tree"
+{%@@ endif @@%}
+
 {%@@ if exists_in_path('pandoc') @@%}
 # alias pandoc to point to version installed for entire system
 # otherwise, anaconda version will come first in $PATH
