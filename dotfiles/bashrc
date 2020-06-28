@@ -179,3 +179,5 @@ EDITOR='code'
 # Keyboard bindings
 bind '"\x08":backward-kill-word'
 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/:/usr/lib/:/usr/lib64/
+
