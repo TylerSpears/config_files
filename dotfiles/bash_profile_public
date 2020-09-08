@@ -7,8 +7,15 @@
 export PS1_CHAR="${PS1_CHAR:-χ}"
 export DOTDROP_PROFILE="${DOTDROP_PROFILE:-'debian'}"
 
+# Add rustlang's cargo application to the PATH.
 {%@@ if exists('$HOME/.cargo/bin') @@%}
 export PATH="$HOME/.cargo/bin:$PATH"
+{%@@ endif @@%}
+
+# Export user bin directory common for some user-installed applications.
+# In particular, pipx installs programs here.
+{%@@ if exists('$HOME/.local/bin') @@%}
+export PATH="$HOME/.local/bin:$PATH"
 {%@@ endif @@%}
 
 # source .bashrc if using bash
