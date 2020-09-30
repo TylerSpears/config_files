@@ -21,7 +21,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # If miniconda is available, then initialize the base conda env and
 # add it to the $PATH.
-{%@@ if exists('/opt/miniconda') or @@%}
+{%@@ if exists('/opt/miniconda') @@%}
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"

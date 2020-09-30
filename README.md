@@ -19,7 +19,7 @@ mkdir ~/dotfiles
 git clone --recurse-submodules -j2 \
     https://github.com/TylerSpears/config_files.git ~/dotfiles
 cd ~/dotfiles
-pip3 install -r dotdrop/requirements.txt --user
+/usr/bin/pip3 install -r dotdrop/requirements.txt --user
 ./dotdrop/bootstrap.sh
 # for now, installation requires an env var
 # DOTDROP_PROFILE to be set to 'debian'
@@ -82,6 +82,7 @@ tmux:
 direnv:
 * <https://dreisbach.us/articles/a-favorite-development-tool-direnv/>
 * <https://github.com/direnv/direnv/issues/73>
+* <https://github.com/direnv/direnv/wiki/Python#anaconda>
 
 python:
 * <https://ljvmiranda921.github.io/notebook/2018/06/21/precommits-using-black-and-flake8/>
