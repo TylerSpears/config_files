@@ -125,29 +125,7 @@ else
 	PS1='\[\033[01m\][ \[\033[01;34m\]\u@\h \[\033[00m\]\[\033[01m\]] \[\033[01;32m\]\w\[\033[00m\]\n\[\033[01;34m\]'"$PS1_CHAR"'\[\033[00m\] '
 fi
 
-# == Anaconda setup ==
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/tyler/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/tyler/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/tyler/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/tyler/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-# enable tab completion in terminal
-# taken from:
-# https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/enable-tab-completion.html
-#eval "$(register-python-argcomplete conda)"
-# == End Anaconda Setup ==
-
-{%@@ if exists_in_path('z.sh') @@%}
-# activate "z"
+{%@@ if exists_in_path('z.sh') @@%} activate "z"
 . z.sh
 {%@@ endif @@%}
 
