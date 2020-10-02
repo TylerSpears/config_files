@@ -47,6 +47,7 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+
 {%@@ if exists_in_path('bat') @@%}
 # colorize man pages
 # from <https://www.vimfromscratch.com/articles/awesome-command-line-tools/>

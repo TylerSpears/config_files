@@ -125,7 +125,13 @@ else
 	PS1='\[\033[01m\][ \[\033[01;34m\]\u@\h \[\033[00m\]\[\033[01m\]] \[\033[01;32m\]\w\[\033[00m\]\n\[\033[01;34m\]'"$PS1_CHAR"'\[\033[00m\] '
 fi
 
-{%@@ if exists_in_path('z.sh') @@%} activate "z"
+{%@@ if exists('$HOME/.nix-profile') @@%}
+# Set env variables for nix.
+source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+{%@@ endif @@%}
+
+{%@@ if exists_in_path('z.sh') @@%} 
+# activate "z"
 . z.sh
 {%@@ endif @@%}
 
