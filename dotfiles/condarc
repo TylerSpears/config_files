@@ -32,6 +32,8 @@ channels:
 create_default_packages:
   - ipython
   - pip
+  - flake8
+  - black
 
 safety_checks: disabled
 
