@@ -34,6 +34,7 @@ create_default_packages:
   - pip
   - flake8
   - black
+  - pretty_errors
 
 safety_checks: disabled
 
