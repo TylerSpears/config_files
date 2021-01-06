@@ -102,3 +102,11 @@ Helper functions:
 
 Export an alias by using the bash function `export_alias command_name "bash command"
 
+## python
+
+### pretty_errors
+
+With the `python -m pretty_errors` command, one can add `pretty_errors` to the default
+python startup scripts. Recommend adding the startup script into the conda environment
+folder (*not* the user's home directory), with a user-level setup (*not* system level).
+
