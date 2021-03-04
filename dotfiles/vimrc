@@ -38,6 +38,9 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'vimwiki/vimwiki'
 
+" Nix syntax support.
+Plug 'LnL7/vim-nix'
+
 " YAML plugins
 Plug 'stephpy/vim-yaml'
 
