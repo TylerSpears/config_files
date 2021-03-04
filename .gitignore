@@ -74,4 +74,7 @@ Thumbs.db
 /**/vim/bundle/
 plug.vim
 
+# Secret key files
+*.pem
+*.key
 
