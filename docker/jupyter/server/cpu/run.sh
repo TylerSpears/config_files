@@ -15,6 +15,7 @@ HASHED_PASS=`cat hashed_passwd.txt`
 
 docker run \
         --rm \
+        --ipc=shareable \
         -p 10000:8888 \
         -e JUPYTER_ENABLE_LAB=yes \
         -e CONDA_ENVS_PATH="/opt/conda/envs:$CONDA_PREFIX/envs" \
@@ -28,5 +29,5 @@ docker run \
         --ServerApp.certfile=/etc/ssl/notebook.pem \
         --ServerApp.base_url=/jupyter \
         --ServerApp.allow_password_change=False \
-        --ServerApp.password=\'${HASHED_PASS}\'
+        --ServerApp.password=${HASHED_PASS}
 
