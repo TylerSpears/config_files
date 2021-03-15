@@ -49,6 +49,9 @@ alias fd="find"
 # change "z" command to "j"
 export _Z_CMD="j"
 
+# Shorter `clear` alias, and don't clear the scrollback buffer.
+alias cl="clear -x"
+
 # dotdrop
 alias dotdrop="{{@@ env['HOME'] @@}}/dotfiles/dotdrop.sh --profile={{@@ env['DOTDROP_PROFILE'] @@}} --cfg={{@@ env['HOME'] @@}}/dotfiles/config.yaml"
 
@@ -64,3 +67,4 @@ alias copydir-resume="copydir --append-verify"
 alias copyfiles="rsync --verbose --archive --human-readable --compress --info=progress2"
 alias copydirstruct="rsync --archive --include='*/' --exclude='*'"
 {%@@ endif @@%}
+
