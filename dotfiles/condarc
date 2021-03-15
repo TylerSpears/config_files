@@ -35,6 +35,9 @@ create_default_packages:
   - flake8
   - black
   - pretty_errors
+  - ipykernel
+  - mamba
+  - nb_conda_kernels
 
 safety_checks: disabled
 
