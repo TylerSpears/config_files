@@ -73,6 +73,26 @@ dotfiles:
     src: config/flake8
     dst: ~/.config/flake8
     link: nolink
+  f_pycodestyle:
+    src: config/pycodestyle
+    dst: ~/.config/pycodestyle
+    link: nolink
+  f_flake8:
+    src: config/jupyterserver/flake8
+    dst: ~/.config/jupyterserver/flake8
+    link: nolink
+  f_jupyterserver_pycodestyle:
+    src: config/jupyterserver/pycodestyle
+    dst: ~/.config/jupyterserver/pycodestyle
+    link: nolink
+  d_matplotlib:
+    src: config/jupyterserver/matplotlib
+    dst: ~/.config/jupyterserver/matplotlib
+    link: nolink
+  d_user-settings:
+    src: config/jupyterserver/.jupyter/lab/user-settings
+    dst: ~/.config/jupyterserver/.jupyter/lab/user-settings
+    link: nolink
 profiles:
   debian:
     actions:
@@ -93,6 +113,11 @@ profiles:
     - f_tmux.conf
     - f_bash_profile_public
     - f_config_flake8
+    - f_pycodestyle
+    - f_flake8
+    - f_jupyterserver_pycodestyle
+    - d_matplotlib
+    - d_user-settings
   debian_cuda:
     include:
     - debian

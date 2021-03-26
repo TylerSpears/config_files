@@ -88,3 +88,10 @@ python:
 * <https://ljvmiranda921.github.io/notebook/2018/06/21/precommits-using-black-and-flake8/>
 for `pyproject.toml` and `.flake8` config files.
 
+docker:
+        * jupyterserver:
+                * <https://github.com/jupyterlab/jupyterlab/issues/9461> for a breakdown of jupyterlab 3.0 compatible extensions
+                * <https://github.com/jupyter/docker-stacks> for wonderful jupyter server dockerfiles
+                * <https://gitlab.com/nvidia/container-images/cuda> for base images containing CUDA and CuDNN
+                * <https://github.com/krassowski/python-language-server> and <https://github.com/krassowski/jupyterlab-lsp> for the jupyter language server extension
+

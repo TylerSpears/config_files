@@ -1,0 +1,9 @@
+{
+    "preferences": {
+        "default_formatter": {
+            "python": [
+                "black"
+            ],
+        }
+    },
+}

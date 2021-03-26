@@ -10,6 +10,11 @@ if [ ! -f ~/.local/share/jupyterserver ]; then
         mkdir --parents ~/.local/share/jupyterserver --mode 0755
         chown $UID:$GROUPS ~/.local/share/jupyterserver
 fi
+if [ ! -f ~/.config/jupyterserver ]; then
+        mkdir --parents ~/.config/jupyterserver --mode 0755
+        mkdir --parents ~/.config/jupyterserver/.jupyter --mode 0755
+        chown -R $UID:$GROUPS ~/.config/jupyterserver
+fi
 
 HASHED_PASS=`cat hashed_passwd.txt`
 
@@ -20,13 +25,18 @@ docker run \
         -p 10000:8888 \
         -e JUPYTER_ENABLE_LAB=yes \
         -e CONDA_ENVS_PATH="/opt/conda/envs:$CONDA_PREFIX/envs" \
+        --user $UID:$GROUPS \
         --volume $CONDA_PREFIX/envs:$CONDA_PREFIX/envs \
-        --volume ~/Projects:/home/jovyan/work \
+        --volume "$HOME/Projects:/home/jovyan/work" \
         --volume "$HOME/sync:$HOME/sync" \
         --volume "$PWD/notebook.pem:/etc/ssl/notebook.pem" \
-        --volume ~/.cache/jupyterserver:/home/jovyan/.jupyter/lab \
+        --volume ~/.cache/jupyterserver:/home/jovyan/.cache \
         --volume ~/.local/share/jupyterserver:/home/jovyan/.local/share \
-        jupyterserver:gpu start-notebook.sh \
+        --volume ~/.config/jupyterserver:/home/jovyan/.config \
+        --volume ~/.config/jupyterserver/.jupyter:/home/jovyan/.jupyter \
+        --volume /srv/tmp:/srv/tmp \
+        --volume /srv/data:/srv/data \
+        jupyterserver:nvidia start-notebook.sh \
         --ServerApp.certfile=/etc/ssl/notebook.pem \
         --ServerApp.base_url=/jupyter \
         --ServerApp.allow_password_change=False \

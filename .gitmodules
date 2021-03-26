@@ -4,3 +4,6 @@
 [submodule "docker/jupyter/server/docker-stacks"]
 	path = docker/jupyter/server/docker-stacks
 	url = git@github.com:jupyter/docker-stacks.git
+[submodule "docker/jupyter/server/cuda"]
+	path = docker/jupyter/server/cuda
+	url = https://gitlab.com/nvidia/container-images/cuda.git
