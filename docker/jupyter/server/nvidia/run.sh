@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
+
+# Get directory of this bash script in case it is invoked from another directory.
+SCRIPT_DIR=$(dirname $BASH_SOURCE)
 
 if [ ! -f ~/.cache/jupyterserver ]; then
         mkdir --parents ~/.cache/jupyterserver --mode 0755
@@ -16,7 +19,7 @@ if [ ! -f ~/.config/jupyterserver ]; then
         chown -R $UID:$GROUPS ~/.config/jupyterserver
 fi
 
-HASHED_PASS=`cat hashed_passwd.txt`
+HASHED_PASS=`cat "$SCRIPT_DIR/hashed_passwd.txt"`
 
 docker run \
         --rm \
@@ -29,7 +32,7 @@ docker run \
         --volume $CONDA_PREFIX/envs:$CONDA_PREFIX/envs \
         --volume "$HOME/Projects:/home/jovyan/work" \
         --volume "$HOME/sync:$HOME/sync" \
-        --volume "$PWD/notebook.pem:/etc/ssl/notebook.pem" \
+        --volume "$SCRIPT_DIR/notebook.pem:/etc/ssl/notebook.pem" \
         --volume ~/.cache/jupyterserver:/home/jovyan/.cache \
         --volume ~/.local/share/jupyterserver:/home/jovyan/.local/share \
         --volume ~/.config/jupyterserver:/home/jovyan/.config \

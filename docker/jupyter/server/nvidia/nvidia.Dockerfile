@@ -28,19 +28,25 @@ RUN mamba install --quiet --yes \
         'jupyterlab-katex=3.2.*' \
         'jupyter-lsp-python=1.1.*' \
         'jupyterlab-lsp=3.5.*' \
+        'ipygany=0.5.*' \
+        'vtk=9.0.*' \
+        'pyvista=0.29.*' \
         'nb_conda_kernels=2.3.*' && \
-        conda clean --all -f -y && \
         pip install --pre --no-input --quiet --no-cache-dir \
         'jupyterlab_templates==0.3.*' \
         'git+https://github.com/krassowski/python-language-server.git@main' \
         'pyls-black==0.4.*' \
         'nbdime==3.0.*' && \
+        python -c "import logging; logging.basicConfig(level='INFO'); import black" && \
+        jupyter labextension install ipygany && \
         jupyter-lab build -y && \
         jupyter-lab clean -y && \
-        python -c "import logging; logging.basicConfig(level='INFO'); import black" && \
+        conda clean --all -f -y && \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
 
+        # 'k3d=2.9.*' \
+        # jupyter labextension install k3d ipygany && \
 ######################################
 # Setup for the ldconfig workaround.
 # Only applicable if you are using nvidia-docker2 on Debian Testing or Experimental

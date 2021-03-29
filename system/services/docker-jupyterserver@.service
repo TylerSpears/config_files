@@ -1,0 +1,20 @@
+[Unit]
+Description=Docker Jupyter Server for user %I
+StartLimitIntervalSec=3
+StartLimitBurst=1
+#Requires=docker.service
+#After=docker.service
+
+[Service]
+#StandardOutput=file:/home/tyler/logs/jupyterserverout.log
+#StandardError=file:/home/tyler/logs/jupyterservererr.log
+Type=simple
+#User=%i
+Restart=always
+EnvironmentFile=%h/.config/systemd/env/%N.env
+ExecStart=/bin/bash ${SERVICE_WORKDIR}/run.sh "$SERVICE_IMAGE_NAME:$SERVICE_IMAGE_TAG"
+ExecStop=/usr/bin/docker kill "$SERVICE_IMAGE_NAME:$SERVICE_IMAGE_TAG"
+
+[Install]
+WantedBy=default.target
+
