@@ -1,0 +1,9 @@
+{
+    "codeCellConfig": {
+        "autoClosingBrackets": false,
+        "lineNumbers": true,
+        "rulers": [90],
+        "codeFolding": true,
+    },
+    "recordTiming": true,
+}
