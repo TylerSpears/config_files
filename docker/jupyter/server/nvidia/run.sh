@@ -4,6 +4,23 @@ set -e
 
 # Get directory of this bash script in case it is invoked from another directory.
 SCRIPT_DIR=$(dirname $BASH_SOURCE)
+UID=`id --user`
+JUPYTER_ENABLE_LAB=yes 
+
+# Check for an https cert file.
+# https://github.com/jupyter/notebook/issues/507#issuecomment-145390380
+# https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#ssl-certificates
+# https://jupyter-notebook.readthedocs.io/en/latest/public_server.html
+if [ ! -f notebook.pem ]; then
+        openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout notebook.pem -out notebook.pem
+        sudo chown $UID notebook.pem
+        sudo chmod 600 notebook.pem
+fi
+
+# Check for hashed password.
+if [ ! -f hashed_passwd.txt ]; then
+        ./hash_password.py
+fi
 
 if [ ! -f ~/.cache/jupyterserver ]; then
         mkdir --parents ~/.cache/jupyterserver --mode 0755
@@ -39,7 +56,7 @@ docker run \
         --volume ~/.config/jupyterserver/.jupyter:/home/jovyan/.jupyter \
         --volume /srv/tmp:/srv/tmp \
         --volume /srv/data:/srv/data \
-        jupyterserver:nvidia start-notebook.sh \
+        $1 start-notebook.sh \
         --ServerApp.certfile=/etc/ssl/notebook.pem \
         --ServerApp.base_url=/jupyter \
         --ServerApp.allow_password_change=False \
