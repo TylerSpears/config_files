@@ -3,8 +3,8 @@
 set -e
 
 # Get directory of this bash script in case it is invoked from another directory.
-SCRIPT_DIR=$(dirname $BASH_SOURCE)
-UID=`id --user`
+SCRIPT_DIR=$(realpath $(dirname $BASH_SOURCE))
+#UID=`id --user`
 JUPYTER_ENABLE_LAB=yes 
 
 # Check for an https cert file.
@@ -48,15 +48,14 @@ docker run \
         --user $UID:$GROUPS \
         --volume $CONDA_PREFIX/envs:$CONDA_PREFIX/envs \
         --volume "$HOME/Projects:/home/jovyan/work" \
-        --volume "$HOME/sync:$HOME/sync" \
         --volume "$SCRIPT_DIR/notebook.pem:/etc/ssl/notebook.pem" \
         --volume ~/.cache/jupyterserver:/home/jovyan/.cache \
         --volume ~/.local/share/jupyterserver:/home/jovyan/.local/share \
         --volume ~/.config/jupyterserver:/home/jovyan/.config \
         --volume ~/.config/jupyterserver/.jupyter:/home/jovyan/.jupyter \
         --volume /srv/tmp:/srv/tmp \
-        --volume /srv/data:/srv/data \
-        $1 start-notebook.sh \
+        --volume /mnt/storage/data:/mnt/storage/data \
+        "$1" start-notebook.sh \
         --ServerApp.certfile=/etc/ssl/notebook.pem \
         --ServerApp.base_url=/jupyter \
         --ServerApp.allow_password_change=False \
