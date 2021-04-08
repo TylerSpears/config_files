@@ -4,6 +4,21 @@ set -e
 
 # Get directory of this bash script in case it is invoked from another directory.
 SCRIPT_DIR=$(dirname $BASH_SOURCE)
+IMAGE_RUN_NAME="${1:-tylerspears/jupyterlab:nvidia}"
+
+# Check for an https cert file.
+# https://github.com/jupyter/notebook/issues/507#issuecomment-145390380
+# https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#ssl-certificates
+# https://jupyter-notebook.readthedocs.io/en/latest/public_server.html
+if [ ! -f "$SCRIPT_DIR"/notebook.pem ]; then
+        openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout "$SCRIPT_DIR"/notebook.pem -out "$SCRIPT_DIR"/notebook.pem
+        sudo chown $UID "$SCRIPT_DIR"/notebook.pem
+        sudo chmod 600 "$SCRIPT_DIR"/notebook.pem
+fi
+# Check for hashed password.
+if [ ! -f "$SCRIPT_DIR"/hashed_passwd.txt ]; then
+        ."$SCRIPT_DIR"/hash_password.py
+fi
 
 if [ ! -f ~/.cache/jupyterserver ]; then
         mkdir --parents ~/.cache/jupyterserver --mode 0755
@@ -39,7 +54,7 @@ docker run \
         --volume ~/.config/jupyterserver/.jupyter:/home/jovyan/.jupyter \
         --volume /srv/tmp:/srv/tmp \
         --volume /srv/data:/srv/data \
-        jupyterserver:nvidia start-notebook.sh \
+        "$IMAGE_RUN_NAME" start-notebook.sh \
         --ServerApp.certfile=/etc/ssl/notebook.pem \
         --ServerApp.base_url=/jupyter \
         --ServerApp.allow_password_change=False \
