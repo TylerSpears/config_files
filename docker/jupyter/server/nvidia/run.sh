@@ -3,8 +3,9 @@
 set -e
 
 # Get directory of this bash script in case it is invoked from another directory.
-SCRIPT_DIR=$(dirname $BASH_SOURCE)
+SCRIPT_DIR=$(realpath $(dirname $BASH_SOURCE))
 IMAGE_RUN_NAME="${1:-tylerspears/jupyterlab:nvidia}"
+JUPYTER_ENABLE_LAB=yes 
 
 # Check for an https cert file.
 # https://github.com/jupyter/notebook/issues/507#issuecomment-145390380
@@ -46,7 +47,6 @@ docker run \
         --user $UID:$GROUPS \
         --volume $CONDA_PREFIX/envs:$CONDA_PREFIX/envs \
         --volume "$HOME/Projects:/home/jovyan/work" \
-        --volume "$HOME/sync:$HOME/sync" \
         --volume "$SCRIPT_DIR/notebook.pem:/etc/ssl/notebook.pem" \
         --volume ~/.cache/jupyterserver:/home/jovyan/.cache \
         --volume ~/.local/share/jupyterserver:/home/jovyan/.local/share \
