@@ -7,6 +7,9 @@ SCRIPT_DIR=$(realpath $(dirname $BASH_SOURCE))
 IMAGE_RUN_NAME="${1:-tylerspears/jupyterlab:nvidia}"
 JUPYTER_ENABLE_LAB=yes 
 
+DATA_DIR="${DATA_DIR:-/srv/data}"
+WRITE_DATA_DIR="${WRITE_DATA_DIR:-/srv/tmp}"
+
 # Check for an https cert file.
 # https://github.com/jupyter/notebook/issues/507#issuecomment-145390380
 # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#ssl-certificates
@@ -52,8 +55,8 @@ docker run \
         --volume ~/.local/share/jupyterserver:/home/jovyan/.local/share \
         --volume ~/.config/jupyterserver:/home/jovyan/.config \
         --volume ~/.config/jupyterserver/.jupyter:/home/jovyan/.jupyter \
-        --volume /srv/tmp:/srv/tmp \
-        --volume /srv/data:/srv/data \
+        --volume "$WRITE_DATA_DIR":"$WRITE_DATA_DIR" \
+        --volume "$DATA_DIR":"$DATA_DIR" \
         "$IMAGE_RUN_NAME" start-notebook.sh \
         --ServerApp.certfile=/etc/ssl/notebook.pem \
         --ServerApp.base_url=/jupyter \
