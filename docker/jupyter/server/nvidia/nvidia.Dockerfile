@@ -32,6 +32,8 @@ RUN mamba install --quiet --yes \
         'ipygany=0.5.*' \
         'vtk=9.0.*' \
         'pyvista=0.29.*' \
+        'plotly=4.14.*' \
+        'python-kaleido=0.2.*' \
         'nb_conda_kernels=2.3.*' && \
         pip install --pre --no-input --quiet --no-cache-dir \
         'jupyterlab_templates==0.3.*' \
@@ -43,11 +45,13 @@ RUN mamba install --quiet --yes \
         'nbdime==3.0.*' && \
         python -c "import logging; logging.basicConfig(level='INFO'); import black" && \
         jupyter labextension install \
-                ipygany \
                 @jupyterlab/apputils \
                 @jupyterlab/celltags \
                 @jupyterlab/toc-extension \
-                @jupyterlab/debugger && \
+                @jupyterlab/debugger \
+                jupyterlab-plotly@4.14 \
+                plotlywidget@4.14 \
+                ipygany && \
         jupyter-lab build -y && \
         jupyter-lab clean -y && \
         conda clean --all -f -y && \
