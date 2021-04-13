@@ -7,8 +7,9 @@ SCRIPT_DIR=$(realpath $(dirname $BASH_SOURCE))
 IMAGE_RUN_NAME="${1:-tylerspears/jupyterlab:nvidia}"
 JUPYTER_ENABLE_LAB=yes 
 
-DATA_DIR="${DATA_DIR:-/srv/data}"
-WRITE_DATA_DIR="${WRITE_DATA_DIR:-/srv/tmp}"
+# env var of a space-separated list of mount paths. If a path contains a space ' ', make
+# sure to enclose it in single quotes "'".
+MOUNT_VOLUMES="${MOUNT_VOLUMES:- }"
 
 # Check for an https cert file.
 # https://github.com/jupyter/notebook/issues/507#issuecomment-145390380
@@ -40,6 +41,13 @@ fi
 
 HASHED_PASS=`cat "$SCRIPT_DIR/hashed_passwd.txt"`
 
+# Parse the space-separated list of MOUNT_VOLUMES and append onto VOLS_TO_MOUNT.
+VOLS_TO_MOUNT=''
+for mount in `echo $MOUNT_VOLUMES | grep -Po "(\'([\w\-./ ]+)+\:([\w\-./ ]+)+\')|(([\w\-./]+)+\:([\w\-./]+)+)" `; 
+do
+        VOLS_TO_MOUNT=$VOLS_TO_MOUNT"--volume $mount ";
+done
+
 docker run \
         --rm \
         --gpus=all \
@@ -49,14 +57,12 @@ docker run \
         -e CONDA_ENVS_PATH="/opt/conda/envs:$CONDA_PREFIX/envs" \
         --user $UID:$GROUPS \
         --volume $CONDA_PREFIX/envs:$CONDA_PREFIX/envs \
-        --volume "$HOME/Projects:/home/jovyan/work" \
         --volume "$SCRIPT_DIR/notebook.pem:/etc/ssl/notebook.pem" \
         --volume ~/.cache/jupyterserver:/home/jovyan/.cache \
         --volume ~/.local/share/jupyterserver:/home/jovyan/.local/share \
         --volume ~/.config/jupyterserver:/home/jovyan/.config \
         --volume ~/.config/jupyterserver/.jupyter:/home/jovyan/.jupyter \
-        --volume "$WRITE_DATA_DIR":"$WRITE_DATA_DIR" \
-        --volume "$DATA_DIR":"$DATA_DIR" \
+        $VOLS_TO_MOUNT \
         "$IMAGE_RUN_NAME" start-notebook.sh \
         --ServerApp.certfile=/etc/ssl/notebook.pem \
         --ServerApp.base_url=/jupyter \

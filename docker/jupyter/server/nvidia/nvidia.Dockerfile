@@ -43,7 +43,7 @@ RUN mamba install --quiet --yes \
         'git+https://github.com/krassowski/python-language-server.git@main' \
         'pyls-black==0.4.*' \
         'nbdime==3.0.*' && \
-        python -c "import logging; logging.basicConfig(level='INFO'); import black" && \
+        python -c "import black; black.CACHE_DIR.mkdir(parents=True, exist_ok=True)" && \
         jupyter labextension install \
                 @jupyterlab/apputils \
                 @jupyterlab/celltags \
