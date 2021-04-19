@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
         direnv \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+
 ######################################
 # Setup for the ldconfig workaround.
 # Only applicable if you are using nvidia-docker2 on Debian Testing or Experimental
@@ -65,7 +66,7 @@ RUN mamba install --quiet --yes \
                 plotlywidget@4.14 && \
         jupyter-lab build -y && \
         jupyter-lab clean -y && \
-        conda clean --all -f -y && \
+        conda clean --all --yes --force-pkgs-dirs && \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
 
@@ -76,7 +77,7 @@ RUN mamba install --quiet --yes \
         pip install --pre --no-input --quiet --no-cache-dir \
         'git+https://github.com/krassowski/python-language-server.git@main' \
         'pyls-black==0.4.*' && \
-        conda clean --all -f -y && \
+        conda clean --all --yes --force-pkgs-dirs && \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
 
@@ -86,15 +87,12 @@ RUN mamba install --quiet --yes \
         'ipygany=0.5.*' \
         'vtk=9.0.*' \
         'pyvista=0.29.*' \
+        'ipympl=0.7.*' \
         'python-kaleido=0.2.*' && \
-        pip install --pre --no-input --quiet --no-cache-dir \
-        'ipyvolume==0.6.0a8' && \
         jupyter labextension install \
-                ipygany \
-                ipyvolume \
-                jupyter-threejs && \
-        jupyter-lab build -y && \
+                ipygany && \
         jupyter-lab clean -y && \
-        conda clean --all -f -y && \
+        conda clean --all --yes --force-pkgs-dirs && \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
+

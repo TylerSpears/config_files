@@ -37,14 +37,15 @@ DOCKER_BUILDKIT=1 docker build \
 PARENT_CONTAINER="tylerspears/jupyterlab:_scipy"
 DOCKER_BUILDKIT=1 docker build \
         --build-arg BASE=$PARENT_CONTAINER \
+        --platform linux/amd64 \
         --tag tylerspears/jupyterlab:nvidia \
         --label device="nvidia" \
         --file nvidia.Dockerfile \
         .
 
 # Remove intermediate build images.
-docker image rm \
-        tylerspears/jupyterlab:_scipy \
-        tylerspears/jupyterlab:_minimal \
-        tylerspears/jupyterlab:_base
+#docker image rm \
+#        tylerspears/jupyterlab:_scipy \
+#        tylerspears/jupyterlab:_minimal \
+#        tylerspears/jupyterlab:_base
 
