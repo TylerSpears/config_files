@@ -81,18 +81,16 @@ RUN mamba install --quiet --yes \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
 
-# Install less stable (i.e., likely to change versions) extensions and libraries;
 # these include the more niche visualization extensions.
 RUN mamba install --quiet --yes \
-        'ipygany=0.5.*' \
         'vtk=9.0.*' \
         'pyvista=0.29.*' \
         'ipympl=0.7.*' \
         'python-kaleido=0.2.*' && \
-        jupyter labextension install \
-                ipygany && \
+        pip install --pre --no-input --quiet --no-cache-dir \
+                'ipyvolume==0.6.0a8' && \
         jupyter-lab clean -y && \
         conda clean --all --yes --force-pkgs-dirs && \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
-
+ 
