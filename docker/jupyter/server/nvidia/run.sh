@@ -51,7 +51,7 @@ done
 docker run \
         --rm \
         --gpus=all \
-        --ipc=shareable \
+        --ipc=host \
         -p 10000:8888 \
         -e JUPYTER_ENABLE_LAB=yes \
         -e CONDA_ENVS_PATH="/opt/conda/envs:$CONDA_PREFIX/envs" \
