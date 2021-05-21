@@ -53,6 +53,7 @@ docker run \
         --gpus=all \
         --ipc=host \
         -p 10000:8888 \
+        -p 6006-6015:6006-6015 \
         -e JUPYTER_ENABLE_LAB=yes \
         -e CONDA_ENVS_PATH="/opt/conda/envs:$CONDA_PREFIX/envs" \
         --user $UID:$GROUPS \

@@ -88,7 +88,14 @@ RUN mamba install --quiet --yes \
         'ipympl=0.7.*' \
         'python-kaleido=0.2.*' && \
         pip install --pre --no-input --quiet --no-cache-dir \
+                'tensorflow-cpu' \
+                'tensorboard' \
+                'tensorboard_plugin_profile' \
+                'git+https://github.com/cliffwoolley/jupyter_tensorboard.git@tb-2.2-compat' \
                 'ipyvolume==0.6.0a8' && \
+        pip install --pre --no-input --quiet --no-cache-dir \
+                'git+https://github.com/chaoleili/jupyterlab_tensorboard.git' && \
+        jupyter tensorboard enable --user && \
         jupyter-lab clean -y && \
         conda clean --all --yes --force-pkgs-dirs && \
         fix-permissions $CONDA_DIR && \
