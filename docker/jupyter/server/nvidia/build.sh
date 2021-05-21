@@ -5,7 +5,7 @@ set -e
 JUPYTER_ENABLE_LAB=yes 
 DOCKER_BUILDKIT="${DOCKER_BUILDKIT:-1}"
 
-# Build base-notebook with cudagl (CUDA & OpenGL) root image
+# Build base-notebook with cuda and cudNN base image
 BASE_DIR="${BASE_DIR:-../docker-stacks/base-notebook}"
 BASE_IMAGE="${BASE_IMAGE:-nvidia/cuda:11.1-cudnn8-runtime-ubuntu20.04@sha256:d0634b35474930e05adc569b87022d308c1e03c292680c62b4df8c35552f7708}"
 
@@ -44,8 +44,8 @@ DOCKER_BUILDKIT=1 docker build \
         .
 
 # Remove intermediate build images.
-#docker image rm \
-#        tylerspears/jupyterlab:_scipy \
-#        tylerspears/jupyterlab:_minimal \
-#        tylerspears/jupyterlab:_base
+docker image rm \
+        tylerspears/jupyterlab:_scipy \
+        tylerspears/jupyterlab:_minimal \
+        tylerspears/jupyterlab:_base
 

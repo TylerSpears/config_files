@@ -81,13 +81,16 @@ RUN mamba install --quiet --yes \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
 
-# these include the more niche visualization extensions.
+# More prone-to-change installations, placed at the end to avoid unnecessary re-building
+# above. These include the more niche visualization and other extensions.
 RUN mamba install --quiet --yes \
         'vtk=9.0.*' \
         'pyvista=0.29.*' \
         'ipympl=0.7.*' \
         'python-kaleido=0.2.*' && \
         pip install --pre --no-input --quiet --no-cache-dir \
+                'tensorflow-cpu==2.5.*' \
+                'tensorboard==2.5.*' \
                 'ipyvolume==0.6.0a8' && \
         jupyter-lab clean -y && \
         conda clean --all --yes --force-pkgs-dirs && \
