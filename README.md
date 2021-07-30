@@ -94,3 +94,5 @@ jupyterserver:
 * <https://gitlab.com/nvidia/container-images/cuda> for base images containing CUDA and CuDNN
 * <https://github.com/krassowski/python-language-server> and <https://github.com/krassowski/jupyterlab-lsp> for the jupyter language server extension
 
+Zettlr:
+* <https://forum.zettlr.com/discussion/178>

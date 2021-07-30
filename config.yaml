@@ -93,6 +93,18 @@ dotfiles:
     src: config/jupyterserver/.jupyter/lab/user-settings
     dst: ~/.config/jupyterserver/.jupyter/lab/user-settings
     link: nolink
+  f_custom.css:
+    src: config/Zettlr/custom.css
+    dst: ~/.config/Zettlr/custom.css
+    link: nolink
+  f_tags.json:
+    src: config/Zettlr/tags.json
+    dst: ~/.config/Zettlr/tags.json
+    link: nolink
+  f_user.dic:
+    src: config/Zettlr/user.dic
+    dst: ~/.config/Zettlr/user.dic
+    link: nolink
 profiles:
   debian:
     actions:
@@ -118,6 +130,9 @@ profiles:
     - f_jupyterserver_pycodestyle
     - d_matplotlib
     - d_user-settings
+    - f_custom.css
+    - f_tags.json
+    - f_user.dic
   debian_cuda:
     include:
     - debian
