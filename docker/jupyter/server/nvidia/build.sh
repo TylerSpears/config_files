@@ -7,7 +7,7 @@ DOCKER_BUILDKIT="${DOCKER_BUILDKIT:-1}"
 
 # Build base-notebook with cuda and cudNN base image
 BASE_DIR="${BASE_DIR:-../docker-stacks/base-notebook}"
-BASE_IMAGE="${BASE_IMAGE:-nvidia/cuda:11.1-cudnn8-runtime-ubuntu20.04@sha256:d0634b35474930e05adc569b87022d308c1e03c292680c62b4df8c35552f7708}"
+BASE_IMAGE="${BASE_IMAGE:-nvidia/cuda:11.1-cudnn8-runtime-ubuntu20.04@sha256:a5cd1ae5f3505d31167641c6591362e22ff853fc61c0870b0064c70ed022116b}"
 
 DOCKER_BUILDKIT=1 docker build \
         --build-arg ROOT_CONTAINER=${BASE_IMAGE} \

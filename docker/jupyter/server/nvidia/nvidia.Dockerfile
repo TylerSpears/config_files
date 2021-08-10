@@ -38,17 +38,16 @@ USER $NB_UID
 # - ipympl
 # - github.com/PAIR-code/facets
 # 
-# Import black to generate initial grammar table. See
-# <https://github.com/psf/black/issues/1143#issuecomment-730814683>.
-RUN mamba install --quiet --yes \
+RUN mamba install --quiet --yes -c conda-forge -c main --no-channel-priority \
         'bqplot=0.12.*' \
-        'black=20.*' \
+        'black=21.*' \
         'flake8=3.8.*' \
         'jupyterlab_code_formatter=1.4.*' \
         'jupyterlab-mathjax3=4.2.*' \
         'jupyterlab-katex=3.2.*' \
         'jupyterlab_execute_time=2.0.*' \
-        'plotly=4.14.*' \
+        'plotly=5.1.*' \
+        'jupyterlab-interactive-dashboard-editor=0.4.*' \
         'nb_conda_kernels=2.3.*' && \
         pip install --pre --no-input --quiet --no-cache-dir \
         'jupyterlab_templates==0.3.*' \
@@ -56,44 +55,35 @@ RUN mamba install --quiet --yes \
         'lckr-jupyterlab-variableinspector==3.0.*' \
         'aquirdturtle_collapsible_headings==3.0.*' \
         'nbdime==3.0.*' && \
-        python -c "import black; black.CACHE_DIR.mkdir(parents=True, exist_ok=True)" && \
-        jupyter labextension install \
-                @jupyterlab/apputils \
-                @jupyterlab/celltags \
-                @jupyterlab/toc-extension \
-                @jupyterlab/debugger \
-                jupyterlab-plotly@4.14 \
-                plotlywidget@4.14 && \
+        python -c "import logging; logging.basicConfig(level='INFO'); import black" && \
         jupyter-lab build -y && \
         jupyter-lab clean -y && \
-        conda clean --all --yes --force-pkgs-dirs && \
+        mamba clean --all -f -y && \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
 
 # Install jupyterlab language server.
-RUN mamba install --quiet --yes \
-        'jupyter-lsp-python=1.1.*' \
-        'jupyterlab-lsp=3.5.*' && \
-        pip install --pre --no-input --quiet --no-cache-dir \
-        'git+https://github.com/krassowski/python-language-server.git@main' \
-        'pyls-black==0.4.*' && \
-        conda clean --all --yes --force-pkgs-dirs && \
+RUN mamba install --quiet --yes -c conda-forge -c main --no-channel-priority \
+        'jupyter-lsp-python-plugins=1.4.*' \
+        'python-lsp-server=1.2.*' \
+        'jedi-language-server=0.34.*' \
+        'jupyterlab-lsp=3.8.*' && \
+        mamba clean --all -f -y && \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
 
 # More prone-to-change installations, placed at the end to avoid unnecessary re-building
 # above. These include the more niche visualization and other extensions.
-RUN mamba install --quiet --yes \
+RUN mamba install --quiet --yes -c conda-forge -c main --no-channel-priority \
         'vtk=9.0.*' \
-        'pyvista=0.29.*' \
+        'pyvista=0.31.*' \
         'ipympl=0.7.*' \
         'python-kaleido=0.2.*' && \
         pip install --pre --no-input --quiet --no-cache-dir \
                 'tensorflow-cpu==2.5.*' \
-                'tensorboard==2.5.*' \
+                'tensorboard==2.6.*' \
                 'ipyvolume==0.6.0a8' && \
-        jupyter-lab clean -y && \
-        conda clean --all --yes --force-pkgs-dirs && \
+        mamba clean --all -f -y && \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
  
