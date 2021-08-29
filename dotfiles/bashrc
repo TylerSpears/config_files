@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # {{@@ header() @@}}
 
 # ~/.bashrc: executed by bash(1) for non-login shells.

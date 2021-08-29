@@ -26,6 +26,16 @@ cd ~/dotfiles
 DOTDROP_PROFILE=debian ./dotdrop.sh install
 ```
 
+Additionally, you will need a `~/.bash_profile`, which typically contains system-specific
+or secure keys and data. A starting point is located in `system/.bash_profile_template`.
+This can be used with:
+
+```bash
+cp system/.bash_profile_template ~/.bash_profile
+```
+
+Then uncomment or add lines as needed.
+
 ## Special Thanks
 
 These configurations were largely taken from or based on the work of others,
