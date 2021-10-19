@@ -51,6 +51,8 @@ bash:
 * <https://unix.stackexchange.com/a/541352>
 * <https://serverfault.com/a/204320> and <http://psung.blogspot.com/2008/05/copying-directory-trees-with-rsync.html>
 for `copydirstruct` rsync trick.
+* <https://stackoverflow.com/a/13864829> and <https://devhints.io/bash#conditionals> 
+for making repeat guard variables in `.bashrc` and `.bash_profile[_public]`.
 
 konsole:
 * <https://superuser.com/a/1292459/764678> for instructions on setting up Ctrl+Backspace
