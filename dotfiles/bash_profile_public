@@ -4,50 +4,61 @@
 # ~/.bash_profile_public
 # This file is sourced by ~/.bash_profile and contains commands that can be safely shared publicly.
 
-export PS1_CHAR="${PS1_CHAR:-χ}"
-export DOTDROP_PROFILE="${DOTDROP_PROFILE:-'debian'}"
+if [ -z ${_DOT_BASH_PROFILE_PUBLIC+nonempty_str} ]; then
 
-# Add rustlang's cargo application to the PATH.
-{%@@ if exists('$HOME/.cargo/bin') @@%}
-export PATH="$HOME/.cargo/bin:$PATH"
-{%@@ endif @@%}
+    _DOT_BASH_PROFILE_PUBLIC=${_DOT_BASH_PROFILE_PUBLIC-"set"}
 
-# Export user bin directory common for some user-installed applications.
-# In particular, pipx installs programs here.
-{%@@ if exists('$HOME/.local/bin') @@%}
-export PATH="$HOME/.local/bin:$PATH"
-{%@@ endif @@%}
-
-
-# If miniconda is available, then initialize the base conda env and
-# add it to the $PATH.
-{%@@ if exists('/opt/miniconda') @@%}
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda/etc/profile.d/conda.sh"
+    export PS1_CHAR="${PS1_CHAR:-χ}"
+    export DOTDROP_PROFILE="${DOTDROP_PROFILE:-'debian'}"
+    
+    # Add rustlang's cargo application to the PATH.
+    {%@@ if exists('$HOME/.cargo/bin') @@%}
+    export PATH="$HOME/.cargo/bin:$PATH"
+    {%@@ endif @@%}
+    
+    # Export user bin directory common for some user-installed applications.
+    # In particular, pipx installs programs here.
+    {%@@ if exists('$HOME/.local/bin') @@%}
+    export PATH="$HOME/.local/bin:$PATH"
+    {%@@ endif @@%}
+    
+    
+    # If miniconda is available, then initialize the base conda env and
+    # add it to the $PATH.
+    {%@@ if exists('/opt/miniconda') @@%}
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/opt/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
     else
-        export PATH="/opt/miniconda/bin:$PATH"
+        if [ -f "/opt/miniconda/etc/profile.d/conda.sh" ]; then
+            . "/opt/miniconda/etc/profile.d/conda.sh"
+        else
+            export PATH="/opt/miniconda/bin:$PATH"
+        fi
     fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+    {%@@ endif @@%}
+    
+    {%@@ if exists_in_path('bat') @@%}
+    # colorize man pages
+    # from <https://www.vimfromscratch.com/articles/awesome-command-line-tools/>
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    {%@@ endif @@%}
+    
+    {%@@ if exists_in_path('pandoc') @@%}
+    eval "$(pandoc --bash-completion)"
+    {%@@ endif @@%}
+    
+    {%@@ if exists('$HOME/.tmux/plugins/tpm') @@%}
+    export TMUX_PLUGIN_MANAGER_PATH="~/.tmux/plugins/tpm"
+    {%@@ endif @@%}
+
+    if [ -f ~/.bashrc ]; then
+      . ~/.bashrc
+    fi
+
 fi
-unset __conda_setup
-# <<< conda initialize <<<
-{%@@ endif @@%}
 
-{%@@ if exists_in_path('bat') @@%}
-# colorize man pages
-# from <https://www.vimfromscratch.com/articles/awesome-command-line-tools/>
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-{%@@ endif @@%}
-
-{%@@ if exists_in_path('pandoc') @@%}
-eval "$(pandoc --bash-completion)"
-{%@@ endif @@%}
-
-{%@@ if exists('$HOME/.tmux/plugins/tpm') @@%}
-export TMUX_PLUGIN_MANAGER_PATH="~/.tmux/plugins/tpm"
-{%@@ endif @@%}
