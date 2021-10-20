@@ -46,7 +46,7 @@ RUN mamba install --quiet --yes -c conda-forge -c main --no-channel-priority \
         'jupyterlab-mathjax3=4.2.*' \
         'jupyterlab-katex=3.2.*' \
         'jupyterlab_execute_time=2.0.*' \
-        'plotly=5.1.*' \
+        'plotly=5.3.*' \
         'jupyterlab-interactive-dashboard-editor=0.4.*' \
         'nb_conda_kernels=2.3.*' && \
         pip install --pre --no-input --quiet --no-cache-dir \
@@ -64,10 +64,10 @@ RUN mamba install --quiet --yes -c conda-forge -c main --no-channel-priority \
 
 # Install jupyterlab language server.
 RUN mamba install --quiet --yes -c conda-forge -c main --no-channel-priority \
-        'jupyter-lsp-python-plugins=1.4.*' \
-        'python-lsp-server=1.2.*' \
-        'jedi-language-server=0.34.*' \
-        'jupyterlab-lsp=3.8.*' && \
+        'jupyter-lsp=1.4.*' \
+        'jupyterlab-lsp=3.9.*' && \
+        mamba install --quiet --yes -c conda-forge -c main --no-channel-priority \
+        'python-lsp-server=1.2.*' && \
         mamba clean --all -f -y && \
         fix-permissions $CONDA_DIR && \
         fix-permissions /home/$NB_USER
@@ -76,12 +76,11 @@ RUN mamba install --quiet --yes -c conda-forge -c main --no-channel-priority \
 # above. These include the more niche visualization and other extensions.
 RUN mamba install --quiet --yes -c conda-forge -c main --no-channel-priority \
         'vtk=9.0.*' \
-        'pyvista=0.31.*' \
-        'ipympl=0.7.*' \
+        'pyvista=0.32.*' \
+        'ipympl=0.8.*' \
+        'ipyvtklink=0.2.*' \
         'python-kaleido=0.2.*' && \
         pip install --pre --no-input --quiet --no-cache-dir \
-                'tensorflow-cpu==2.5.*' \
-                'tensorboard==2.6.*' \
                 'ipyvolume==0.6.0a8' && \
         mamba clean --all -f -y && \
         fix-permissions $CONDA_DIR && \

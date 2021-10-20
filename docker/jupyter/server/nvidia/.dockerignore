@@ -1,0 +1,4 @@
+# .dockerignore for nvidia jupyter server build.
+*.pem
+hashed_passwd*
+
