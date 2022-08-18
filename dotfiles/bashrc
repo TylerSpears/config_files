@@ -172,10 +172,6 @@ if [ -z ${_DOT_BASHRC+nonempty_str} ]; then
     export GEM_HOME="$HOME/gems"
     export PATH="$HOME/gems/bin:$PATH"
     
-    # Variable to disable the trains demo server as the default server.
-    # See <https://github.com/allegroai/trains/issues/209> for details.
-    export TRAINS_NO_DEFAULT_SERVER=true
-    
     # Place anaconda init function into a separate script, as it must be customized
     # on a per-system basis.
     if [ -f ~/.condainitrc ]; then
