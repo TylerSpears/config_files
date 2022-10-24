@@ -52,6 +52,8 @@ docker run \
         --rm \
         --gpus=all \
         --ipc=host \
+        --user=998:0 \
+        --group-add=users \
         -p 10000:8888 \
         -e CONDA_ENVS_PATH="/opt/conda/envs:$CONDA_PREFIX/envs" \
         -e GEN_CERT=yes \
