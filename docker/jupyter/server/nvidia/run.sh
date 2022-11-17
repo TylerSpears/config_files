@@ -5,7 +5,7 @@ set -e
 # Get directory of this bash script in case it is invoked from another directory.
 SCRIPT_DIR=$(realpath $(dirname $BASH_SOURCE))
 IMAGE_RUN_NAME="${1:-tylerspears/jupyterlab:nvidia}"
-JUPYTER_ENABLE_LAB=yes 
+#JUPYTER_ENABLE_LAB=yes 
 
 # env var of a space-separated list of mount paths. If a path contains a space ' ', make
 # sure to enclose it in single quotes "'".
@@ -52,9 +52,11 @@ docker run \
         --rm \
         --gpus=all \
         --ipc=host \
+        --user=998:0 \
+        --group-add=users \
         -p 10000:8888 \
-        -e JUPYTER_ENABLE_LAB=yes \
         -e CONDA_ENVS_PATH="/opt/conda/envs:$CONDA_PREFIX/envs" \
+        -e GEN_CERT=yes \
         --user $UID:$GROUPS \
         --volume $CONDA_PREFIX/envs:$CONDA_PREFIX/envs \
         --volume "$SCRIPT_DIR/notebook.pem:/etc/ssl/notebook.pem" \
@@ -68,3 +70,4 @@ docker run \
         --ServerApp.base_url=/jupyter \
         --ServerApp.allow_password_change=False \
         --ServerApp.password=${HASHED_PASS}
+

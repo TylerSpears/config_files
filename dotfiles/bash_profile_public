@@ -56,6 +56,14 @@ if [ -z ${_DOT_BASH_PROFILE_PUBLIC+nonempty_str} ]; then
     export TMUX_PLUGIN_MANAGER_PATH="~/.tmux/plugins/tpm"
     {%@@ endif @@%}
 
+    {%@@ if exists('$HOME/.redun') @@%}
+    # Set redun config directory to the home directory, where sub-repositories 
+    # will branch out from there.
+    # See <https://insitro.github.io/redun/config.html#configuration-directory> for
+    # more details.
+    export REDUN_CONFIG="~/.redun/"
+    {%@@ endif @@%}
+
     if [ -f ~/.bashrc ]; then
       . ~/.bashrc
     fi

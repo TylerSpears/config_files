@@ -1,0 +1,13 @@
+[Unit]
+Description=Aim experiment tracking gRPC server for user %I
+StartLimitIntervalSec=6
+StartLimitBurst=1
+
+[Service]
+Type=simple
+Restart=always
+EnvironmentFile=%h/.config/systemd/env/%p.env
+ExecStart=/usr/bin/docker run --rm --ipc=host -p 53800:53800 -v ${_AIM_REPO}:${_AIM_REPO} -v %h/${_AIM_SSL_USER_CERTFILE}:/etc/ssl/certs/aim_ssl_certfile.pem:ro -v %h/${_AIM_SSL_USER_KEYFILE}:/etc/ssl/certs/aim_ssl_keyfile.pem:ro -e AIM_UI_TELEMETRY_ENABLED=0 aimstack/aim:${_AIM_IMG_TAG} server --host 0.0.0.0 --repo ${_AIM_REPO} --port 53800 --workers 2 --ssl-certfile /etc/ssl/certs/aim_ssl_certfile.pem --ssl-keyfile /etc/ssl/certs/aim_ssl_keyfile.pem
+
+[Install]
+WantedBy=default.target

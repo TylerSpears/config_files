@@ -2,13 +2,14 @@
 
 set -eou pipefail
 
-JUPYTER_ENABLE_LAB=yes 
+#JUPYTER_ENABLE_LAB=yes 
 DOCKER_BUILDKIT="${DOCKER_BUILDKIT:-1}"
 
 # Build base-notebook with cuda and cudNN base image
 BASE_DIR="${BASE_DIR:-../docker-stacks/base-notebook}"
 #BASE_IMAGE="${BASE_IMAGE:-nvidia/cuda:11.1-cudnn8-runtime-ubuntu20.04@sha256:a5cd1ae5f3505d31167641c6591362e22ff853fc61c0870b0064c70ed022116b}"
-BASE_IMAGE="${BASE_IMAGE:-nvidia/cuda:11.4.2-cudnn8-runtime-ubuntu20.04}"
+#BASE_IMAGE="${BASE_IMAGE:-nvidia/cuda:11.4.2-cudnn8-runtime-ubuntu20.04}"
+BASE_IMAGE="${BASE_IMAGE:-nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04}"
 
 DOCKER_BUILDKIT=1 docker build \
         --build-arg ROOT_CONTAINER=${BASE_IMAGE} \

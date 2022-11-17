@@ -1,0 +1,13 @@
+[Unit]
+Description=Aim experiment tracking GUI server for user %I
+StartLimitIntervalSec=6
+StartLimitBurst=1
+
+[Service]
+Type=simple
+Restart=always
+EnvironmentFile=%h/.config/systemd/env/%p.env
+ExecStart=/usr/bin/docker run --rm --ipc=host -p 43800:43800 -v ${_AIM_REPO}:${_AIM_REPO} -e AIM_UI_TELEMETRY_ENABLED=0 aimstack/aim:${_AIM_IMG_TAG} up --host 0.0.0.0 --repo ${_AIM_REPO} --port 43800
+
+[Install]
+WantedBy=default.target
