@@ -68,3 +68,6 @@ alias copyfiles="rsync --verbose --archive --human-readable --compress --info=pr
 alias copydirstruct="rsync --archive --include='*/' --exclude='*'"
 {%@@ endif @@%}
 
+{%@@ if exists_in_path('vglrun') @@%}
+alias vglr="vglrun -d egl0"
+{%@@ endif @@%}

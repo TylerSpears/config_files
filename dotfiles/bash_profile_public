@@ -22,26 +22,6 @@ if [ -z ${_DOT_BASH_PROFILE_PUBLIC+nonempty_str} ]; then
     export PATH="$HOME/.local/bin:$PATH"
     {%@@ endif @@%}
     
-    
-    # If miniconda is available, then initialize the base conda env and
-    # add it to the $PATH.
-    {%@@ if exists('/opt/miniconda') @@%}
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/opt/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/opt/miniconda/etc/profile.d/conda.sh" ]; then
-            . "/opt/miniconda/etc/profile.d/conda.sh"
-        else
-            export PATH="/opt/miniconda/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
-    {%@@ endif @@%}
-    
     {%@@ if exists_in_path('bat') @@%}
     # colorize man pages
     # from <https://www.vimfromscratch.com/articles/awesome-command-line-tools/>
@@ -54,14 +34,6 @@ if [ -z ${_DOT_BASH_PROFILE_PUBLIC+nonempty_str} ]; then
     
     {%@@ if exists('$HOME/.tmux/plugins/tpm') @@%}
     export TMUX_PLUGIN_MANAGER_PATH="~/.tmux/plugins/tpm"
-    {%@@ endif @@%}
-
-    {%@@ if exists('$HOME/.redun') @@%}
-    # Set redun config directory to the home directory, where sub-repositories 
-    # will branch out from there.
-    # See <https://insitro.github.io/redun/config.html#configuration-directory> for
-    # more details.
-    export REDUN_CONFIG="~/.redun/"
     {%@@ endif @@%}
 
     if [ -f ~/.bashrc ]; then
