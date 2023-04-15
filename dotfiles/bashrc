@@ -133,11 +133,6 @@ if [ -z ${_DOT_BASHRC+nonempty_str} ]; then
     	PS1='\[\033[01m\][ \[\033[01;34m\]\u@\h \[\033[00m\]\[\033[01m\]] \[\033[01;32m\]\w\[\033[00m\]\n\[\033[01;34m\]'"$PS1_CHAR"'\[\033[00m\] '
     fi
     
-    {%@@ if exists('$HOME/.nix-profile') @@%}
-    # Set env variables for nix.
-    source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-    {%@@ endif @@%}
-    
     {%@@ if exists_in_path('z.sh') @@%} 
     # activate "z"
     . z.sh
@@ -183,3 +178,7 @@ if [ -z ${_DOT_BASHRC+nonempty_str} ]; then
         . ~/.condainitrc
     fi
 fi 
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then 
+    source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+

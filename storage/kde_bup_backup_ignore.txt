@@ -1,0 +1,24 @@
+# KDE Bup-style backup exclude patterns
+# All patterns must be valid Python regex
+# See <https://bup.github.io/man/bup-index.html>
+
+# OS generated files
+/lost+found/$
+/.directory/$
+\.DS_Store
+\.Spotlight-V100
+\.Trashes
+/ehthumbs\.db
+/Thumbs\.db
+/.xsession-errors$
+
+# System dirs.
+/.cache/
+/.Trash-.*/$
+
+# Python files
+/__pycache__/$
+.*\.py[cod]$
+.*py.class$
+/__pypackages__/$
+/\.ipynb_checkpoints/$
