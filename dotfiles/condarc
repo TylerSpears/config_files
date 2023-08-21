@@ -11,21 +11,21 @@
 # help debug channel issues
 show_channel_urls: true
 
-# pip will always be installed with python 
-add_pip_as_python_dependency: true
-
 # Enable pip interopability with conda
 # <https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/pip-interoperability.html>
 pip_interop_enabled: true
 
+use_pip: true
+
 # 'disabled' channel priority will ignore channel priority, and only use package
 # version to determine downloads; channels are only used to break ties in package
 # versioning. See 'conda config --describe channel_priority' for details.
-channel_priority: disabled
+channel_priority: flexible
 channels:
   - pytorch
-  - defaults
+  - nvidia
   - conda-forge
+  - nodefaults
 
 # when using "conda create" for envs these packages will always 
 # be installed
@@ -36,9 +36,7 @@ create_default_packages:
   - black
   - pretty_errors
   - ipykernel
-  - mamba
   - nb_conda_kernels
 
-safety_checks: disabled
-
 report_errors: true
+always_yes: false
